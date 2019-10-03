@@ -11,7 +11,16 @@ class MainView extends React.Component {
       { city: "Berlin", country: "Germany" },
       { city: "London", country: "UK" },
       { city: "Paris", country: "France" }
-    ]
+    ],
+    days: [
+      {weekday:'Monday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'26'},
+      {weekday:'Tuesday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'22'},
+      {weekday:'Wednesday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'15',maxTemp:'26'},
+      {weekday:'Thurday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'14',maxTemp:'25'},
+      {weekday:'Friday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'19',maxTemp:'26'},
+      {weekday:'Saturday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'19',maxTemp:'28'},
+      {weekday:'Sunday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'25'}
+  ]
   };
 
   componentDidMount() {
@@ -25,7 +34,7 @@ class MainView extends React.Component {
         <AppTitle />
         <MainCities cities={this.state.cities} />
         <TimeLine />
-        <Chart />
+        <Chart days={this.state.days } />
       </div>
     );
   }

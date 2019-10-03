@@ -1,10 +1,35 @@
-import React from 'react'
+import React from 'react';
+// const days = [
+//     {weekday:'Monday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'26'},
+//     {weekday:'Tuesday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'22'},
+//     {weekday:'Wednesday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'15',maxTemp:'26'},
+//     {weekday:'Thurday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'14',maxTemp:'25'},
+//     {weekday:'Friday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'19',maxTemp:'26'},
+//     {weekday:'Saturday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'19',maxTemp:'28'},
+//     {weekday:'Sunday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'25'}
+// ]
 
-export default function Chart() {
+const Day = ({weekday,humidityIcon,humidity,temperatureIcon,temperature,maxTemp}) => (<div className="row">
+                    <div>{weekday}</div>
+                    <div><i className={`fas ${humidityIcon}`} ></i> {humidity}%</div>
+                    <div><i className={`fas ${temperatureIcon}`}></i></div>
+                    <div>{temperature}°C</div>
+                    <div>
+                        <div className="container-line">
+                            <div className="dashed"></div>
+                            <div className="solid-grey"></div>
+                            <div className="solid-red"></div>
+                        </div>
+                    </div>
+                    <div>{maxTemp}°C</div>
+                </div>)
+
+
+const Chart = ({days}) => {
     return (
         <div>
-            
-            <div className="row">
+            {days.map( ({weekday,humidityIcon,humidity,temperatureIcon,temperature,maxTemp})=>(<Day weekday={weekday} humidityIcon={humidityIcon} humidity={humidity} temperatureIcon={temperatureIcon} temperature={temperature} maxTemp={maxTemp} />) ) }
+            {/* <div className="row">
                     <div>Monday</div>
                     <div><i className="fas fa-tint"></i> 54%</div>
                     <div><i className="fas fa-sun"></i></div>
@@ -39,93 +64,10 @@ export default function Chart() {
                             <div>26&#176;C</div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 
-                <div className="row">
-                    <div>Tuesday</div>
-                    <div><i className="fas fa-tint"></i> 54%</div>
-                    <div><i className="fas fa-sun"></i></div>
-                    <div>17&#176;C</div>
-                    <div>
-                        <div className="container-line">
-                            <div className="dashed-more"></div>
-                            <div className="solid-orange-sm"></div>
-                            <div className="solid-grey-end"></div>
-                        </div>
-                    </div>
-                    <div>24&#176;C</div>
-                </div>
-                <div className="row">
-                    <div>Wednesday</div>
-                    <div><i className="fas fa-tint"></i> 54%</div>
-                    <div><i className="fas fa-sun"></i></div>
-                    <div>17&#176;C</div>
-                    <div>
-                        <div className="container-line">
-                            <div className="dashed"></div>
-                            <div className="solid-grey"></div>
-                            <div className="solid-red"></div>
-                        </div>
-                    </div>
-                    <div>28&#176;C</div>
-                </div>
-                <div className="row">
-                    <div>Thurday</div>
-                    <div><i className="fas fa-tint"></i> 54%</div>
-                    <div><i className="fas fa-cloud-sun"></i></div>
-                    <div>15&#176;C</div>
-                    <div>
-                        <div className="container-line">
-                            <div className="dashed"></div>
-                            <div className="solid-grey"></div>
-                            <div className="solid-red"></div>
-                        </div>
-                    </div>
-                    <div>25&#176;C</div>
-                </div>
-                <div className="row">
-                    <div>Friday</div>
-                    <div><i className="fas fa-tint"></i> 54%</div>
-                    <div><i className="fas fa-cloud-showers-heavy"></i></div>
-                    <div>14&#176;C</div>
-                    <div>
-                        <div className="container-line">
-                            <div className="dashed-more"></div>
-                            <div className="solid-orange-sm"></div>
-                            <div className="solid-grey-end"></div>
-                        </div>
-                    </div>
-                    <div>21&#176;C</div>
-                </div>
-                <div className="row">
-                    <div>Saturday</div>
-                    <div><i className="fas fa-tint"></i> 54%</div>
-                    <div><i className="fas fa-cloud-rain"></i></div>
-                    <div>14&#176;C</div>
-                    <div>
-                        <div className="container-line">
-                            <div className="dashed"></div>
-                            <div className="solid-grey"></div>
-                            <div></div>
-                        </div>
-                    </div>
-                    <div>18&#176;C</div>
-                </div>
-                <div className="row">
-                    <div>Saturday</div>
-                    <div><i className="fas fa-tint"></i> 54%</div>
-                    <div><i className="fas fa-sun"></i></div>
-                    <div>19&#176;C</div>
-                    <div>
-                    <div className="container-line">
-                            <div className="dashed-more"></div>
-                            <div className="solid-orange-sm"></div>
-                            <div className="solid-grey-end"></div>
-                        </div>
-                    </div>
-                    <div>24&#176;C</div>
-                </div>
-
         </div>
     )
 }
+
+export default Chart;

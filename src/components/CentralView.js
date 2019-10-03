@@ -1,32 +1,49 @@
-import React from 'react'
+import React from 'react';
 
-export default function CentralView() {
-    return (
-        <div>
-            <section className="today">
-                <article>
-                    <div className="aside__today--article">
-                        <div className="aside__today--date1">
-                            <i className="fas fa-cloud-rain"></i>
+// const allTodayData = [
+//     {todayIcon:'fa-cloud-rain',weekDay:'Sat',dayMonth:'3 Aug',todayDeg:'28',activeCity:'Berlin',activeCountry:'Germany', activeFeel:'32',activeSunset:'20:15'}
+// ]
+
+const TodayData = ({todayIcon,weekDay,dayMonth,todayDeg,activeCity,activeCountry,activeFeel,activeSunset}) => (<div>
+    <section className="today">
+                    <article>
+                        <div className="aside__today--article">
+                            <div className="aside__today--date1">
+                                <i className={`fas ${todayIcon}`}></i>
+                            </div>
+                            <div className="aside__today--date2">
+                                <h6>Today</h6>
+                                <h6 className="aside__today--lightfont">{weekDay}, {dayMonth}</h6>
+                            </div>
                         </div>
-                        <div className="aside__today--date2">
-                            <h6>Today</h6>
-                            <h6 className="aside__today--lightfont">Sat, 3 Aug</h6>
-                        </div>
-                    </div>
-                </article>
-            </section>
-            <section className="data__2">
+                    </article>
+                </section>
+                <section className="data__2">
                 <div className="aside__today--degree">
-                    <div>28</div>
-                    <div className="degree">&#176;C</div>
+                    <div>{todayDeg} </div>
+                    <div className="degree">°C</div>
                 </div>
                 <div>
-                    <div className="aside__today__2--location">Berlin, Germany</div>
+                    <div className="aside__today__2--location">{activeCity}, {activeCountry}</div>
                     <br/>
-                    <div className="aside__today__2--felt">Feels like 32 <span className="dot">&#8226;</span>Sunset 20:15</div>
+                    <div className="aside__today__2--felt">Feels like {activeFeel}°C - Sunset {activeSunset}</div>
                 </div>
             </section>
+</div>)
+
+ const CentralView = ({allTodayData}) => {
+    return (
+        <div>
+            {allTodayData.map(  ({todayIcon,weekDay,dayMonth,todayDeg,activeCity,activeCountry,activeFeel,activeSunset})=>(
+            <TodayData todayIcon={todayIcon} 
+                        weekDay={weekDay} 
+                        dayMonth={dayMonth} 
+                        todayDeg={todayDeg} 
+                        activeCity={activeCity}
+                        activeCountry={activeCountry}
+                        activeFeel={activeFeel}
+                        activeSunset={activeSunset} />) ) }
+                        
             <section className="data_3">
                 <div id="title-chart">Chance of rain</div>
                 <br />
@@ -65,3 +82,5 @@ export default function CentralView() {
         </div>
     )
 }
+
+export default CentralView;
