@@ -1,7 +1,11 @@
 import React from "react";
-//containers
+// API
+import axios from 'axios';
+// containers
 import MainView from "./containers/MainView";
 import AsideView from "./containers/AsideView";
+
+
 
 import "./App.css";
 

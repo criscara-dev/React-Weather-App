@@ -1,9 +1,5 @@
 import React from 'react';
 
-// const allTodayData = [
-//     {todayIcon:'fa-cloud-rain',weekDay:'Sat',dayMonth:'3 Aug',todayDeg:'28',activeCity:'Berlin',activeCountry:'Germany', activeFeel:'32',activeSunset:'20:15'}
-// ]
-
 const TodayData = ({todayIcon,weekDay,dayMonth,todayDeg,activeCity,activeCountry,activeFeel,activeSunset}) => (<div>
     <section className="today">
                     <article>
