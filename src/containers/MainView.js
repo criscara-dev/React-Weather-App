@@ -4,7 +4,6 @@ import AppTitle from "../components/AppTitle";
 import MainCities from "../components/MainCities";
 import TimeLine from "../components/TimeLine";
 import Chart from "../components/Chart";
-import axios from 'axios';
 
 class MainView extends React.Component {
   state = {

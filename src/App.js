@@ -1,6 +1,6 @@
 import React from "react";
 // API
-import axios from 'axios';
+// import axios from 'axios';
 // containers
 import MainView from "./containers/MainView";
 import AsideView from "./containers/AsideView";
