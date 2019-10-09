@@ -1,5 +1,5 @@
 import React from 'react';
-import openweathermap from '../api/openweathermap';
+import axios from 'axios';
 
 //components
 // import LoginArea from "../components/LoginArea";
@@ -8,54 +8,37 @@ import CentralView from "../components/CentralView";
 class AsideView extends React.Component {
     
     state = {
-        allTodayData:[
-            {todayIcon:'fa-cloud-rain',weekDay:'Sat',dayMonth:'3 Aug',todayDeg:'28',activeCity:'Berlin',activeCountry:'Germany', activeFeel:'32',activeSunset:'20:15'}
-        ],
-        lat: 0,
-        lon: 0,
+        latitude: 0,
+        longitude: 0,
         errMessage: '',
         weather:[],
-        name:''
+        name:'',
+        temperature:0,
+        sunset:0
     }
 
 componentDidMount() {
-         
-    window.navigator.geolocation.getCurrentPosition(
-        position => {
-        this.setState({
-          lat: position.coords.latitude,
-          lon: position.coords.longitude
-        })
-      },(err)=>{
-          this.setState({
-              errMessage:err.message
-          })
-      } );
-
- 
-      // trying to use dynamic data...
-    // const getPosition= (lat,lon)=>{ fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${this.state.lat}&lon=${this.state.lon}&APPID=dcc4ba580205eb4e86efb0c560cc0b95`)
-    const getPosition= ()=>{fetch('http://api.openweathermap.org/data/2.5/weather?lat=51.6513792&lon=-0.0827392&appid=dcc4ba580205eb4e86efb0c560cc0b95')
-        .then(res => res.json())
-        .then((data) => {
-          this.setState({ weather: data.weather, name:data.name })
-        })
-        .catch(error => console.log('error in fetching and parsing data', error) )
+    const getLocation = async position => {
+        try {
+            let { latitude, longitude } = position.coords;
+            const link = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
+            const response = await axios.get(link);
+            console.log(response.data);
+            this.setState({
+                weather: response.data.weather,
+                latitude,
+                longitude,
+                temperature: response.data.main.temp,
+                sunset: response.data.sys.sunset
+              })
+        } catch (err) {
+            handleError();
+        }
     }
-    getPosition()
 
-
-    // 2. trying to use axios...
-//     getData = async (lat,lon) => { const response = await openweathermap.get(`/weather?lat=${this.state.lat}&lon=${this.state.lon}&appid=dcc4ba580205eb4e86efb0c560cc0b95`)
-//     .then(
-//     response => {
-//       this.setState({ weather: response.weather, name:response.name })
-//     }
-//   )
-//   .catch(error => {
-//       console.log('Error', error);
-//     });
-//     }
+    const handleError = () => this.setState({ errMessage:true });
+         
+    window.navigator.geolocation.getCurrentPosition(getLocation, handleError);
 
 }
 
@@ -66,18 +49,26 @@ componentDidMount() {
 
         return(
             <div className='asideStyle' >
-                Lat is: {this.state.lat} and long: {this.state.lon} <br/>{this.state.errMessage}
+                Lat is: {this.state.latitude} and long: {this.state.longitude} <br/>{this.state.errMessage}
                 <br />
-                {weather.map( item =>(<h2 key={item.id}>{item.main}{item.description}</h2>) )}
+                {weather.map( item =>(
+                    <h2 key={item.id}>
+                        {item.main}
+                        {item.description}
+                        </h2>
+                    ) )}
                <br />
                 {this.state.name}
-
                 {/* <LoginArea /> */}
-                <CentralView allTodayData={this.state.allTodayData} />
+                <CentralView 
+                    allTodayData={this.state.allTodayData}
+                    weather={this.state.weather}
+                    temperature={this.state.temperature}
+                    sunset={this.state.sunset}
+                />
             </div>
         )
     }
-  
 }
 
 export default AsideView;

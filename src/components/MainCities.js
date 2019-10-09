@@ -20,7 +20,7 @@ const MainCities = ({ cities }) => {
     <div>
       <article style={mainCityStyle}>
         {cities.map(({ city, country }) => (
-          <City city={city} country={country} />
+          <City key={city} city={city} country={country} />
         ))}
 
         <figure className="add__city">

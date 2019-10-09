@@ -25,15 +25,7 @@ class MainView extends React.Component {
 
   componentDidMount() {
     //server call
-    // axios.get('http://api.openweathermap.org/data/2.5/weather?q=',{
-    //   params: {q : 'London'},
-    //   headers: {
-    //     Authorization:'Client-ID dcc4ba580205eb4e86efb0c560cc0b95'
-    //   }
-    // }).then(
-    //   response => console.log(response)
-    // )
-    
+        
 
     //setState with response from server
   }
