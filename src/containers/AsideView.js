@@ -12,9 +12,14 @@ class AsideView extends React.Component {
         longitude: 0,
         errMessage: '',
         weather:[],
-        name:'',
+        icon:'',
         temperature:0,
-        sunset:0
+        sunrise:0,
+        sunset:0,
+        name:'',
+        country:'',
+        main:'',
+        desc:''
     }
 
 componentDidMount() {
@@ -25,11 +30,17 @@ componentDidMount() {
             const response = await axios.get(link);
             console.log(response.data);
             this.setState({
-                weather: response.data.weather,
                 latitude,
                 longitude,
+                weather: response.data.weather,
+                main: response.data.weather[0].main,
+                desc: response.data.weather[0].description,
+                icon: response.data.weather[0].icon,
                 temperature: response.data.main.temp,
-                sunset: response.data.sys.sunset
+                sunrise: response.data.sys.sunrise,
+                sunset: response.data.sys.sunset,
+                name:response.data.name,
+                country:response.data.sys.country
               })
         } catch (err) {
             handleError();
@@ -44,27 +55,33 @@ componentDidMount() {
 
 
     render(){
-        // console.log(this.state.weather);
+        
         let weather = this.state.weather;
 
         return(
             <div className='asideStyle' >
-                Lat is: {this.state.latitude} and long: {this.state.longitude} <br/>{this.state.errMessage}
-                <br />
-                {weather.map( item =>(
-                    <h2 key={item.id}>
-                        {item.main}
-                        {item.description}
-                        </h2>
-                    ) )}
                <br />
-                {this.state.name}
-                {/* <LoginArea /> */}
+               {/* {weather.map( item =>(
+                    <div key={item.id} style={{textAlign:'center'}}>
+                        <h2 >
+                        {item.main}
+                        </h2>
+                        <h4>
+                            {item.description}
+                        </h4>
+                    </div>
+                    ) )} */}
                 <CentralView 
+                    main={this.state.main}
+                    desc={this.state.desc}
                     allTodayData={this.state.allTodayData}
                     weather={this.state.weather}
                     temperature={this.state.temperature}
+                    icon={this.state.icon}
+                    sunrise={this.state.sunrise}
                     sunset={this.state.sunset}
+                    name={this.state.name}
+                    country={this.state.country}
                 />
             </div>
         )

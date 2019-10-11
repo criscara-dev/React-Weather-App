@@ -8,20 +8,26 @@ const TodayData = ({
   temperature,
   activeCity,
   activeCountry,
-  activeFeel,
-  activeSunset
+  activeSunrise,
+  activeSunset,
+  todayMain,
+  todayDesc
 }) => {
   const celsius = temperature - 273.15;
   return (
     <div>
       <section className="today">
         <article>
+          <div>
+          <h2>{todayMain}:</h2>
+           <h3>{todayDesc}</h3>
+          </div>
           <div className="aside__today--article">
             <div className="aside__today--date1">
-              <i className={`fas ${todayIcon}`}></i>
+              <img alt="weather icon" src={`https://openweathermap.org/img/w/${todayIcon}.png`} />
             </div>
             <div className="aside__today--date2">
-              <h6>Today</h6>
+              <h6>Today</h6>{moment(Date.now()).format("H[:]mm")}
               <h6 className="aside__today--lightfont">
                 {weekDay}, {dayMonth}
               </h6>
@@ -40,7 +46,8 @@ const TodayData = ({
           </div>
           <br />
           <div className="aside__today__2--felt">
-            Feels like {activeFeel}°C - Sunset{" "}
+            Sunrise {moment(activeSunrise).format('LTS')}
+            - Sunset
             {moment(activeSunset).format("H[:]mm")}
           </div>
         </div>
@@ -49,17 +56,19 @@ const TodayData = ({
   );
 };
 
-const CentralView = ({ temperature, sunset, weather }) => {
+const CentralView = ({ main, desc, temperature, name, country,sunrise, sunset, weather,icon }) => {
   return (
     <div>
       <TodayData
-        todayIcon={""}
+      todayMain={main}
+      todayDesc={desc}
+        todayIcon={icon}
         weekDay={""}
         dayMonth={""}
         temperature={temperature}
-        activeCity={""}
-        activeCountry={""}
-        activeFeel={""}
+        activeCity={name}
+        activeCountry={country}
+        activeSunrise={sunrise}
         activeSunset={sunset}
       />
 
@@ -78,6 +87,12 @@ const CentralView = ({ temperature, sunset, weather }) => {
           {weather.map(weatherElement => (
             <div key={sunset} className="chart">
               <div className="chart-bar bar-1"></div>
+              <div>10AM</div>
+            </div>
+          ))}
+          {weather.map(weatherElement => (
+            <div key={sunset} className="chart">
+              <div className="chart-bar bar-2"></div>
               <div>10AM</div>
             </div>
           ))}
