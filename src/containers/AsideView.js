@@ -6,7 +6,6 @@ import CentralView from "../components/CentralView";
 import DayForecast from "../components/DayForecast";
 
 class AsideView extends React.Component {
-    
     state = {
         latitude: 0,
         longitude: 0,
@@ -27,8 +26,11 @@ componentDidMount() {
     const getLocation = async position => {
         try {
             let { latitude, longitude } = position.coords;
-            const link = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
+            const baseURL = "http://api.openweathermap.org/data/2.5/";
+            const link = `${baseURL}weather?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
             const response = await axios.get(link);
+            const linkForecast = `${baseURL}forecast?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
+            const responseF = await axios.get(linkForecast);
             console.log(response.data);
             this.setState({
                 latitude,
@@ -41,7 +43,8 @@ componentDidMount() {
                 sunrise: response.data.sys.sunrise,
                 sunset: response.data.sys.sunset,
                 name:response.data.name,
-                country:response.data.sys.country
+                country:response.data.sys.country,
+                listDT: responseF.data.list
               })
         } catch (err) {
             handleError();
@@ -51,25 +54,6 @@ componentDidMount() {
     const handleError = () => this.setState({ errMessage:true });
          
     window.navigator.geolocation.getCurrentPosition(getLocation, handleError);
-
-    // API call for forecast // ? take too long avoid or add just link in API call above
-    const getForecast = async position => {
-        try {
-            let { latitude, longitude } = position.coords;
-            const linkForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
-            const response = await axios.get(linkForecast);
-            console.log(response.data);
-            this.setState({
-                latitude,
-                longitude,
-                listDT: response.data.list,
-              })
-        } catch (err) {
-            handleErrorForecast();
-        }
-    }
-    const handleErrorForecast = () => this.setState({ errMessage:true });
-    window.navigator.geolocation.getCurrentPosition(getForecast, handleErrorForecast);
 
 }
 

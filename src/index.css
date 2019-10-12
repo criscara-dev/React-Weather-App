@@ -326,7 +326,7 @@ header div.num-notification {
     display: inline-block;
 }
 
-.today h2 {
+.today h2,.today h3 {
     text-align: center;
 }
 
