@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 
 //components
-// import LoginArea from "../components/LoginArea";
 import CentralView from "../components/CentralView";
 import DayForecast from "../components/DayForecast";
 
