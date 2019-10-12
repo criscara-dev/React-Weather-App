@@ -1,0 +1,522 @@
+/******************** Appstyle  *************************/
+
+.appStyle {
+    display: flex;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    height: 100vh;
+  }
+
+.mainStyle {
+    margin: 0 1rem;
+    flex-direction: column;
+    background-color: #F3FBFF;
+    flex: 2;
+    flex-wrap: wrap;
+}
+
+.asideStyle {
+    display: flex;
+    flex-direction: column;
+    flex: 1.5;
+    order: 2;
+    background-color: #110E3C;
+    color: #fff;
+    flex-wrap: wrap;
+}
+
+/******************** Appstyle  *************************/
+::placeholder {
+    font-size: 0.5rem;
+    color: grey;
+}
+
+#city {
+    background-color: transparent;
+    border: none;
+    font-size: 0.625rem;
+    font-weight: 500;
+}
+
+img {
+    height: auto;
+    max-width: 5rem;
+}
+
+.main {
+    margin: 2rem;
+}
+
+.add__city {
+    display: flex;
+    border: 1px solid #000;
+    border-radius: 0.625rem;
+    background-color: #fff;
+    min-width: 80px;
+    min-height: 80px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+   }
+
+.add__more {
+    font-size: 0.625rem;
+}
+
+figure {
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    flex:1 1 80px;
+}
+
+figcaption {
+    font-size: 0.5rem;
+    text-align: center;
+}
+
+/******************** TimeLine **********************/
+
+.middle {
+    display: flex;
+    margin: 0.625rem;
+    font-size: 0.625rem;
+}
+
+.middle-left {
+    display: flex;
+    flex: 4;
+    justify-content: space-between;
+}
+
+.middle-left>div {
+    font-size: 0.625rem;
+    color: grey;
+}
+
+.middle-left>div:first-child {
+    color: #110E3C;
+    font-weight: bold;
+    display: inline-block;
+    position: relative;
+}
+
+.middle-left>div:first-child::before {
+    content: '.';
+    display: inline-block;
+    /* position the dot underneath the character */
+    position: absolute;
+    bottom: -1em;
+    left: 0;
+    /* center the dot horizontally */
+    text-align: center;
+    width: 100%;
+    font-size: 150%
+}
+
+.middle-right {
+    flex: 2;
+}
+
+/********************** Chart ************************/
+
+.fa-tint {
+    color: #4394ED;
+    font-size: 0.4rem;
+}
+
+.fa-sun {
+    color: #F7C500;
+    font-size: 0.8rem;
+}
+
+.fa-cloud-showers-heavy {
+    color: #110E3C;
+    font-size: 0.5rem;
+}
+
+.fa-cloud-sun {
+    color: #4394ED;
+    font-size: 0.5rem;
+}
+
+.container-line {
+    display: flex;
+    width: 150px;
+}
+
+
+.dashed {
+    font-size: 1rem;
+    border-bottom: 0.1rem dashed lightgrey;
+    flex: 1;
+}
+
+.dashed-more {
+    font-size: 1rem;
+    border-bottom: 0.1rem dashed lightgrey;
+    flex: 1;
+}
+
+.solid-grey {
+    border-bottom: 0.1rem solid lightgrey;
+    flex: 1;
+}
+
+.solid-orange-sm {
+    border-bottom: 0.1rem solid orangered;
+    flex: 0.5;
+}
+
+.solid-red {
+    border-bottom: 0.1rem solid orangered;
+    flex: 1;
+}
+
+.solid-grey-end {
+    border-bottom: 0.1rem solid lightgrey;
+    flex: 1;
+}
+
+
+/* tr>td:first-of-type {
+    text-align: left;
+} */
+
+.solid-red:nth-of-type(2) {
+    border-bottom: 0.1rem solid orangered;
+    flex: 1.5 !important
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    padding: 0.3rem 0;
+  }
+
+.row div:first-of-type {
+    flex-basis:5rem;
+    text-align: left;
+}
+
+.row div {
+    text-align: center;
+    font-size: 0.625rem;
+}
+
+/************************************* PopUp *************************************/
+
+
+  
+  .popUp {
+    display: flex;
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    left: 100px;;
+    width: 200px;
+    height: 5rem;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.625rem;
+    padding: 0 1rem;
+    transform: translateY(-30%);
+    transition: all 0.6s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    z-index: 1;
+  }
+  
+  .row:hover .popUp {
+    transform: translateY(0%);
+    background-color: #fff!important;
+    opacity: 1;
+  }
+
+
+
+
+.popUp.item {
+    flex: 1;
+    justify-content: space-between;
+}
+
+div.item {
+    padding: 5px;
+    font-size: 0.5rem;
+
+}
+
+.item>div {
+    padding: 5px;
+}
+
+.item-blue {
+    background-color: #110E3C;
+    border-radius: 6rem;
+    padding: 2px;
+    color: #fff;
+}
+
+
+
+/************************************* End  PopUp *************************************/
+
+/*********************************** HEADER ******************************************/
+header {
+    font-weight: 700;
+    margin: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.aside__header--1 {
+    flex: 2;
+    order: 1
+}
+
+.aside__header--1 span,
+.aside__header--2 span {
+    font-size: 0.5rem;
+}
+
+.aside__header--2 {
+    flex: 2;
+    order: 2;
+}
+
+.aside__header--3 {
+    flex: 1;
+    order: 3;
+    align-content: flex-end;
+}
+
+.aside__header--3 img {
+    border-radius: 5px;
+    width: 2rem;
+}
+
+header div {
+    display: inline-block;
+    font-size: 0.5rem;
+}
+
+header div.num-notification {
+    background-color: #F45464;
+    padding: 6px;
+    margin: 6px;
+    border-radius: 5px;
+    font-size: 0.4rem;
+    width: 0.4rem;
+    height: 0.4rem;
+}
+
+/**************** END HEADER ****************/
+
+/*********************************** DATA ******************************************/
+.today {
+    display: flex;
+    justify-content: center;
+}
+
+.today article {
+    display: inline-block;
+}
+
+.today h2 {
+    text-align: center;
+}
+
+.aside__today--article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 6
+}
+
+.aside__today--date1 {
+    flex: 1;
+    margin-right: 1rem;
+}
+
+.aside__today--date2 {
+    flex: 1;
+}
+
+.todayDescription::first-letter {
+    text-transform: capitalize;
+}
+
+.aside__today--date2,
+h6 {
+    margin: 0;
+}
+
+.aside__today--date2 h6:first-child {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.aside__today--date2 h6.aside__today--lightfont {
+    font-weight: 300;
+    font-size: 0.5rem;
+}
+
+
+.fas.fa-cloud-rain {
+    color: #4394ED;
+}
+
+.aside__today--degree {
+    display: flex;
+    justify-content: center;
+}
+
+div.aside__today--degree div:first-child {
+    font-size: 4rem;
+    font-weight: 100;
+}
+
+.degree {
+    line-height: 3;
+}
+
+.aside__today__2--location,
+.aside__today__2--felt {
+    font-weight: 300;
+    font-size: 0.5rem;
+    text-align: center;
+}
+
+.dot {
+    font-size: 0.625rem;
+    padding: 0 0.625rem;
+    color: lightblue;
+}
+
+#title-chart {
+    font-size: 0.625rem;
+    font-weight: 700
+}
+
+.data_3 {
+    margin: 2rem;
+}
+
+
+#chart-area {
+    display: flex;
+    height: 12rem;
+    justify-content: baseline
+}
+
+#dayType {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 0.5rem;
+    font-weight: 700;
+}
+
+.chart {
+    flex: 1;
+    /* justify-content: center; */
+    background-color: #110E3C;
+}
+
+.chart-bar {
+    width: 20px;
+    height: 100%;
+    /* text-align: center; */
+    position: relative;
+}
+
+.chart-bar::before {
+    content: '';
+    position: absolute;
+    width: 0px;
+    height: 100%;
+    border: 1px dashed #302E63;
+    left: 50%;
+    bottom: 0;
+    transform: translatex(-50%);
+}
+
+.bar-1::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #302E63;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.bar-2::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    background: #302E63;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.bar-3::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background: #F7C500;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.bar-4::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    background: #302E63;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.bar-5::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 70%;
+    background: #302E63;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.bar-6::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    background: #302E63;
+    bottom: 0;
+    border-radius: 20px;
+}
+
+.chart div:nth-of-type(2) {
+    margin-top: 20px;
+    font-size: 0.5rem;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+/*************** END DATA *****************/
