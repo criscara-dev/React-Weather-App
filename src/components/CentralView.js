@@ -44,9 +44,7 @@ const TodayData = ({
           </div>
           <br />
           <div className="aside__today__2--felt">
-            Sunrise {moment(activeSunrise).format('LTS')} - {activeSunrise}
-            | Sunset
-            {moment(activeSunset).format("H[:]mm")}- {activeSunset}
+            Sunrise: {moment.unix(activeSunrise).format('LTS')} 🌎 Sunset: {moment.unix(activeSunset).format('LTS')}
           </div>
         </div>
       </section>
@@ -68,7 +66,7 @@ const CentralView = ({ main, desc, temperature, name, country, sunrise, sunset, 
         activeSunset={sunset}
       />
 
-      <section className="data_3">
+      {/* <section className="data_3">
         <div id="title-chart">Chance of rain</div>
         <br />
         <div id="chart-area">
@@ -93,7 +91,7 @@ const CentralView = ({ main, desc, temperature, name, country, sunrise, sunset, 
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

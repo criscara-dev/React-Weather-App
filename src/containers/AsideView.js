@@ -10,7 +10,7 @@ class AsideView extends React.Component {
         latitude: 0,
         longitude: 0,
         errMessage: '',
-        weather:[],
+        // weather:[],
         icon:'',
         temperature:0,
         sunrise:0,
@@ -26,16 +26,16 @@ componentDidMount() {
     const getLocation = async position => {
         try {
             let { latitude, longitude } = position.coords;
-            const baseURL = "http://api.openweathermap.org/data/2.5/";
-            const link = `${baseURL}weather?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
+            // const baseURL = "http://api.openweathermap.org/data/2.5/";
+            const link = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
             const response = await axios.get(link);
-            const linkForecast = `${baseURL}forecast?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
+            const linkForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
             const responseF = await axios.get(linkForecast);
-            console.log(response.data);
+            console.log(responseF.data);
             this.setState({
                 latitude,
                 longitude,
-                weather: response.data.weather,
+                // weather: response.data.weather,
                 main: response.data.weather[0].main,
                 desc: response.data.weather[0].description,
                 icon: response.data.weather[0].icon,
@@ -60,7 +60,7 @@ componentDidMount() {
 
     render(){
         
-        let weather = this.state.weather;
+        // let weather = this.state.weather;
         let listDT = this.state.listDT;
         return(
             <div className='asideStyle' >
@@ -79,7 +79,7 @@ componentDidMount() {
                     main={this.state.main}
                     desc={this.state.desc}
                     allTodayData={this.state.allTodayData}
-                    weather={this.state.weather}
+                    // weather={this.state.weather}
                     temperature={this.state.temperature}
                     icon={this.state.icon}
                     sunrise={this.state.sunrise}
@@ -87,17 +87,21 @@ componentDidMount() {
                     name={this.state.name}
                     country={this.state.country}
                 />
+                <br />
                 <DayForecast 
-                //     listDT={listDT.map( hourForecast => (
-                // <div key={hourForecast.dt}>{hourForecast.dt_txt}</div>
-                // ) ) } 
-                listDT={listDT.map( hourForecast => (
-                    <div key={hourForecast.dt}>{hourForecast.dt_txt}</div>
-                    ) ) } 
+                    listDT={listDT.slice(0,5).map( (hourForecast,index) => (
+                <div key={hourForecast.dt}>
+                    Day: {(hourForecast.dt_txt).slice(8,10)},
+                    H:{(hourForecast.dt_txt).slice(10,13)} - {hourForecast.weather[0].main}
+                    Temp: {(hourForecast.main.temp - 273).toFixed(1)}°C
+                    </div>
+                )  ) }
                 />
+               
             </div>
         )
     }
 }
+
 
 export default AsideView;
