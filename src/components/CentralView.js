@@ -6,6 +6,8 @@ const TodayData = ({
   temperature,
   activeCity,
   activeCountry,
+  activeHumidity,
+  activePressure,
   activeSunrise,
   activeSunset,
   todayMain,
@@ -43,6 +45,10 @@ const TodayData = ({
             {activeCity}, {activeCountry}
           </div>
           <br />
+          <div className="aside__today__2--location">
+            Humidity: <b>{activeHumidity}%</b> - Pressure: <b>{activePressure}hPa</b>
+          </div>
+          <br />
           <div className="aside__today__2--felt">
             Sunrise: {moment.unix(activeSunrise).format('LTS')} 🌎 Sunset: {moment.unix(activeSunset).format('LTS')}
           </div>
@@ -52,7 +58,7 @@ const TodayData = ({
   );
 };
 
-const CentralView = ({ main, desc, temperature, name, country, sunrise, sunset, weather,icon }) => {
+const CentralView = ({ main, desc, temperature, name, country, pressure, humidity, sunrise, sunset, weather,icon }) => {
   return (
     <div>
       <TodayData
@@ -62,36 +68,11 @@ const CentralView = ({ main, desc, temperature, name, country, sunrise, sunset, 
         temperature={temperature}
         activeCity={name}
         activeCountry={country}
+        activeHumidity={humidity}
+        activePressure={pressure}
         activeSunrise={sunrise}
         activeSunset={sunset}
       />
-
-      {/* <section className="data_3">
-        <div id="title-chart">Chance of rain</div>
-        <br />
-        <div id="chart-area">
-          <div id="dayType">
-            <div>sunny</div>
-            <div>rainy</div>
-            <div>
-              heavy
-              <br /> rain
-            </div>
-          </div>
-          {weather.map(weatherElement => (
-            <div key={sunset} className="chart">
-              <div className="chart-bar bar-1"></div>
-              <div>10AM</div>
-            </div>
-          ))}
-          {weather.map(weatherElement => (
-            <div key={sunset} className="chart">
-              <div className="chart-bar bar-2"></div>
-              <div>10AM</div>
-            </div>
-          ))}
-        </div>
-      </section> */}
     </div>
   );
 };

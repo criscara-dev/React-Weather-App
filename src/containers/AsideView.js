@@ -4,19 +4,21 @@ import axios from 'axios';
 //components
 import CentralView from "../components/CentralView";
 import DayForecast from "../components/DayForecast";
+import moment from 'moment';
 
 class AsideView extends React.Component {
     state = {
         latitude: 0,
         longitude: 0,
         errMessage: '',
-        // weather:[],
         icon:'',
         temperature:0,
         sunrise:0,
         sunset:0,
         name:'',
-        country:'',
+        country:0,
+        humidity:0,
+        pressure:'',
         main:'',
         desc:'',
         listDT:[]
@@ -35,7 +37,6 @@ componentDidMount() {
             this.setState({
                 latitude,
                 longitude,
-                // weather: response.data.weather,
                 main: response.data.weather[0].main,
                 desc: response.data.weather[0].description,
                 icon: response.data.weather[0].icon,
@@ -44,6 +45,8 @@ componentDidMount() {
                 sunset: response.data.sys.sunset,
                 name:response.data.name,
                 country:response.data.sys.country,
+                humidity:response.data.main.humidity,
+                pressure:response.data.main.pressure,
                 listDT: responseF.data.list
               })
         } catch (err) {
@@ -60,39 +63,28 @@ componentDidMount() {
 
     render(){
         
-        // let weather = this.state.weather;
         let listDT = this.state.listDT;
         return(
             <div className='asideStyle' >
                <br />
-               {/* {weather.map( item =>(
-                    <div key={item.id} style={{textAlign:'center'}}>
-                        <h2>
-                        {item.main}
-                        </h2>
-                        <h4>
-                            {item.description}
-                        </h4>
-                    </div>
-                    ) )} */}
                 <CentralView 
                     main={this.state.main}
                     desc={this.state.desc}
                     allTodayData={this.state.allTodayData}
-                    // weather={this.state.weather}
                     temperature={this.state.temperature}
                     icon={this.state.icon}
                     sunrise={this.state.sunrise}
                     sunset={this.state.sunset}
                     name={this.state.name}
                     country={this.state.country}
+                    humidity={this.state.humidity}
+                    pressure={this.state.pressure}
                 />
                 <br />
                 <DayForecast 
                     listDT={listDT.slice(0,5).map( (hourForecast,index) => (
                 <div key={hourForecast.dt}>
-                    Day: {(hourForecast.dt_txt).slice(8,10)},
-                    H:{(hourForecast.dt_txt).slice(10,13)} - {hourForecast.weather[0].main}
+                    {moment(hourForecast.dt_txt).calendar()} -
                     Temp: {(hourForecast.main.temp - 273).toFixed(1)}°C
                     </div>
                 )  ) }
