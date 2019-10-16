@@ -4,10 +4,15 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+<<<<<<< HEAD
     "chart.js": "^2.8.0",
     "moment": "^2.24.0",
     "react": "^16.10.0",
     "react-chartjs-2": "^2.8.0",
+=======
+    "moment": "^2.24.0",
+    "react": "^16.10.0",
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
     "react-dom": "^16.10.0",
     "react-scripts": "3.1.2"
   },

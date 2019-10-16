@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 /******************** Appstyle  *************************/
+=======
+/******************** Applstyle  *************************/
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
 
 .appStyle {
     display: flex;
@@ -29,7 +33,11 @@
     flex-wrap: wrap;
 }
 
+<<<<<<< HEAD
 /******************** Appstyle  *************************/
+=======
+/******************** Applstyle  *************************/
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
 ::placeholder {
     font-size: 0.5rem;
     color: grey;
@@ -324,32 +332,47 @@ header div.num-notification {
 
 .today article {
     display: inline-block;
+<<<<<<< HEAD
 }
 
 .today h2,.today h3 {
     text-align: center;
+=======
+    max-width: 7rem
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
 }
 
 .aside__today--article {
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     flex: 6
+=======
+    flex: 2
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
 }
 
 .aside__today--date1 {
     flex: 1;
+<<<<<<< HEAD
     margin-right: 1rem;
+=======
+    margin-right: 10px;
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
 }
 
 .aside__today--date2 {
     flex: 1;
 }
 
+<<<<<<< HEAD
 .todayDescription::first-letter {
     text-transform: capitalize;
 }
 
+=======
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
 .aside__today--date2,
 h6 {
     margin: 0;
@@ -387,7 +410,11 @@ div.aside__today--degree div:first-child {
 .aside__today__2--location,
 .aside__today__2--felt {
     font-weight: 300;
+<<<<<<< HEAD
     font-size: 0.8rem;
+=======
+    font-size: 0.5rem;
+>>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
     text-align: center;
 }
 
