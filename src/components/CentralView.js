@@ -19,20 +19,20 @@ const TodayData = ({
       <section className="today">
         <article>
           <div>
-          <h2>Today: {todayMain}</h2>
-           <h3 className="todayDescription">- {todayDesc} -</h3>
+          {/* <h2>Today: {todayMain}</h2>
+           <h3 className="todayDescription">- {todayDesc} -</h3> */}
           </div>
           <div className="aside__today--article">
             <div className="aside__today--date1">
               <img  alt="weather icon" src={`https://openweathermap.org/img/w/${todayIcon}.png`} />
             </div>
             <div className="aside__today--date2">
-              <h5>{moment(Date.now()).format("MMM Do YY")}</h5>
-              <h5 className="aside__today--lightfont">
-                {moment(Date.now()).format("H[:]mm")}
-              </h5>
+              <h5>{moment(Date.now()).format("MMM Do H[:]mm")}</h5>
             </div>
           </div>
+          <div>
+            <h3 className="aside__today--date2 odayDescription">- {todayDesc} -</h3>
+            </div>
         </article>
       </section>
       <section className="data__2">

@@ -68,21 +68,24 @@ class MainView extends React.Component {
 
   }
   render() {
+    let listDT = this.state.listDT;
+    
     return (
       <div className="mainStyle">
         <MainHeader />
         <AppTitle />
         <MainCities cities={this.state.cities} />
         <Chart days={this.state.days } />
-        <WeeklyForecast 
+        {/* <WeeklyForecast 
           main={this.state.main}
-          listDT={this.state.listDT.map( (hourForecast,index) => (
+          listDT={listDT.filter((hourForecast,index) => index % 5 ).map( (hourForecast,index) => (
             <div key={hourForecast.dt}>
             {moment(hourForecast.dt_txt).calendar()} -
             Temp: {(hourForecast.main.temp - 273).toFixed(1)}°C
             </div>
-        )  ) }
-          />
+        ) ) }
+          /> */}
+          
       </div>
     );
   }

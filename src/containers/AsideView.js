@@ -5,6 +5,7 @@ import axios from 'axios';
 import CentralView from "../components/CentralView";
 import DayForecast from "../components/DayForecast";
 import moment from 'moment';
+import ChartAside from '../components/ChartAside';
 
 class AsideView extends React.Component {
     state = {
@@ -21,7 +22,34 @@ class AsideView extends React.Component {
         pressure:'',
         main:'',
         desc:'',
-        listDT:[]
+        listDT:[],
+        chartData:{}
+    }
+
+    componentWillMount(){
+        this.getChartData();
+    }
+
+    getChartData(){
+        this.setState({
+            chartData:{
+                labels:['9:00','12:00','15:00', '18:00', '21:00'],
+                datasets:[
+                    {
+                        label:'Temperature',
+                        data:[
+                            164356,
+                            261656,
+                            234132,
+                            322764,
+                            343243,
+                            224434,
+                        ],
+                        backgroundColor:'rgba(255, 99, 132, 0.6)'
+                    }
+                ]
+            }
+        })
     }
 
 componentDidMount() {
@@ -33,7 +61,8 @@ componentDidMount() {
             const response = await axios.get(link);
             const linkForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
             const responseF = await axios.get(linkForecast);
-            console.log(responseF.data);
+            console.log('response',response.data);
+            console.log('responseF',responseF.data);
             this.setState({
                 latitude,
                 longitude,
@@ -84,12 +113,13 @@ componentDidMount() {
                 <DayForecast 
                     listDT={listDT.slice(0,5).map( (hourForecast,index) => (
                 <div key={hourForecast.dt}>
-                    {moment(hourForecast.dt_txt).calendar()} -
-                    Temp: {(hourForecast.main.temp - 273).toFixed(1)}°C
+                    {moment(hourForecast.dt_txt).format('LT')}
+                    <br />
+                    {(hourForecast.main.temp - 273).toFixed(1)}
                     </div>
                 )  ) }
                 />
-               
+               <ChartAside chartDa={this.state.chartData} legendPosition='bottom' />
             </div>
         )
     }
