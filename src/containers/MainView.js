@@ -2,7 +2,6 @@ import React from "react";
 import MainHeader from "../components/MainHeader";
 import AppTitle from "../components/AppTitle";
 import MainCities from "../components/MainCities";
-<<<<<<< HEAD
 import WeeklyForecast from "../components/WeeklyForecast";
 import Chart from "../components/Chart";
 
@@ -10,11 +9,6 @@ import Chart from "../components/Chart";
 import axios from "axios";
 import moment from 'moment';
 
-=======
-import TimeLine from "../components/TimeLine";
-import Chart from "../components/Chart";
-
->>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
 class MainView extends React.Component {
   state = {
     cities: [
@@ -30,17 +24,12 @@ class MainView extends React.Component {
       {weekday:'Friday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'19',maxTemp:'26'},
       {weekday:'Saturday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'19',maxTemp:'28'},
       {weekday:'Sunday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'25'}
-<<<<<<< HEAD
   ],
   listDT:[]
-=======
-  ]
->>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
   };
 
   componentDidMount() {
     //server call
-<<<<<<< HEAD
     const getLocation = async position => {
       try {
           let { latitude, longitude } = position.coords;
@@ -81,19 +70,11 @@ class MainView extends React.Component {
   render() {
     let listDT = this.state.listDT;
     
-=======
-        
-
-    //setState with response from server
-  }
-  render() {
->>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
     return (
       <div className="mainStyle">
         <MainHeader />
         <AppTitle />
         <MainCities cities={this.state.cities} />
-<<<<<<< HEAD
         <Chart days={this.state.days } />
         {/* <WeeklyForecast 
           main={this.state.main}
@@ -105,10 +86,6 @@ class MainView extends React.Component {
         ) ) }
           /> */}
           
-=======
-        <TimeLine />
-        <Chart days={this.state.days } />
->>>>>>> c13c8db3444a12abd52a8c0c03906f7a99878642
       </div>
     );
   }

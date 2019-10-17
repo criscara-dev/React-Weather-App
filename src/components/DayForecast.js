@@ -9,7 +9,7 @@ const DayForecast = ({listDT}) => {
     )
 }
 
-DayForecast.defaultProps = {
+DayForecast.defaultProps = {    
     listDT:'default text...'
 }
 
