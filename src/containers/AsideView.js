@@ -5,7 +5,11 @@ import axios from 'axios';
 import CentralView from "../components/CentralView";
 import DayForecast from "../components/DayForecast";
 import moment from 'moment';
-import ChartAside from '../components/ChartAside';
+import Chart from '../components/Chart';
+
+
+// base URL FOR API call
+const baseURL = "http://api.openweathermap.org/data/2.5";
 
 class AsideView extends React.Component {
     state = {
@@ -23,68 +27,72 @@ class AsideView extends React.Component {
         main:'',
         desc:'',
         listDT:[],
-        chartData:{}
+        chartData:[]
     }
 
-    componentWillMount(){
-        this.getChartData();
-    }
+    // getChartData(){
+    //     this.setState({
+    //         chartData:{
+    //             labels:['9:00','12:00','15:00', '18:00', '21:00'],
+    //             datasets:[
+    //                 {
+    //                     label:'Temperature',
+    //                     data:[
+    //                         164356,
+    //                         261656,
+    //                         234132,
+    //                         322764,
+    //                         343243,
+    //                         224434,
+    //                     ],
+    //                     backgroundColor:'rgba(255, 99, 132, 0.6)'
+    //                 }
+    //             ]
+    //         }
+    //     })
+    // }
 
-    getChartData(){
+    getCurrentWeather = async (latitude,longitude) => {
+        const link = `${baseURL}/weather?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
+        const response = await axios.get(link);
         this.setState({
-            chartData:{
-                labels:['9:00','12:00','15:00', '18:00', '21:00'],
-                datasets:[
-                    {
-                        label:'Temperature',
-                        data:[
-                            164356,
-                            261656,
-                            234132,
-                            322764,
-                            343243,
-                            224434,
-                        ],
-                        backgroundColor:'rgba(255, 99, 132, 0.6)'
-                    }
-                ]
-            }
-        })
+            latitude,
+            longitude,
+            main: response.data.weather[0].main,
+            desc: response.data.weather[0].description,
+            icon: response.data.weather[0].icon,
+            temperature: response.data.main.temp,
+            sunrise: response.data.sys.sunrise,
+            sunset: response.data.sys.sunset,
+            name:response.data.name,
+            country:response.data.sys.country,
+            humidity:response.data.main.humidity,
+            pressure:response.data.main.pressure,
+          })
+    }
+    
+    getForecast =  async (latitude,longitude) => {
+        const link = `${baseURL}/forecast?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
+        const response = await axios.get(link);
+        this.setState({
+            chartData: response.data.list
+          })
     }
 
 componentDidMount() {
     const getLocation = async position => {
         try {
             let { latitude, longitude } = position.coords;
-            // const baseURL = "http://api.openweathermap.org/data/2.5/";
-            const link = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
-            const response = await axios.get(link);
-            const linkForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=dcc4ba580205eb4e86efb0c560cc0b95`;
-            const responseF = await axios.get(linkForecast);
-            console.log('response',response.data);
-            console.log('responseF',responseF.data);
-            this.setState({
-                latitude,
-                longitude,
-                main: response.data.weather[0].main,
-                desc: response.data.weather[0].description,
-                icon: response.data.weather[0].icon,
-                temperature: response.data.main.temp,
-                sunrise: response.data.sys.sunrise,
-                sunset: response.data.sys.sunset,
-                name:response.data.name,
-                country:response.data.sys.country,
-                humidity:response.data.main.humidity,
-                pressure:response.data.main.pressure,
-                listDT: responseF.data.list
-              })
+            this.getCurrentWeather(latitude, longitude);
+            this.getForecast(latitude, longitude);
+            
         } catch (err) {
             handleError();
         }
     }
 
     const handleError = () => this.setState({ errMessage:true });
-         
+        
     window.navigator.geolocation.getCurrentPosition(getLocation, handleError);
 
 }
@@ -92,7 +100,7 @@ componentDidMount() {
 
     render(){
         
-        let listDT = this.state.listDT;
+        const {chartData} = this.state;
         return(
             <div className='asideStyle' >
                <br />
@@ -111,7 +119,7 @@ componentDidMount() {
                 />
                 <br />
                 <DayForecast 
-                    listDT={listDT.slice(0,5).map( (hourForecast,index) => (
+                    listDT={chartData.slice(0,5).map( (hourForecast,index) => (
                 <div key={hourForecast.dt}>
                     {moment(hourForecast.dt_txt).format('LT')}
                     <br />
@@ -119,7 +127,7 @@ componentDidMount() {
                     </div>
                 )  ) }
                 />
-               <ChartAside chartDa={this.state.chartData} legendPosition='bottom' />
+               <Chart chartData={this.state.chartData} />
             </div>
         )
     }

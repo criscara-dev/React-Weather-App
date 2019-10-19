@@ -2,12 +2,12 @@ import React from "react";
 import MainHeader from "../components/MainHeader";
 import AppTitle from "../components/AppTitle";
 import MainCities from "../components/MainCities";
-import WeeklyForecast from "../components/WeeklyForecast";
-import Chart from "../components/Chart";
+// import WeeklyForecast from "../components/WeeklyForecast";
+// import Chart from "../components/Chart";
 
 
 import axios from "axios";
-import moment from 'moment';
+// import moment from 'moment';
 
 class MainView extends React.Component {
   state = {
@@ -25,7 +25,7 @@ class MainView extends React.Component {
       {weekday:'Saturday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'19',maxTemp:'28'},
       {weekday:'Sunday',humidityIcon: 'fa-tint',humidity:'54%',temperatureIcon:'fa-sun',temperature:'17',maxTemp:'25'}
   ],
-  listDT:[]
+  // listDT:[]
   };
 
   componentDidMount() {
@@ -54,7 +54,7 @@ class MainView extends React.Component {
               country:response.data.sys.country,
               humidity:response.data.main.humidity,
               pressure:response.data.main.pressure,
-              listDT: responseF.data.list
+              // listDT: responseF.data.list
             })
       } catch (err) {
           handleError();
@@ -68,14 +68,14 @@ class MainView extends React.Component {
 
   }
   render() {
-    let listDT = this.state.listDT;
+    // let listDT = this.state.listDT;
     
     return (
       <div className="mainStyle">
         <MainHeader />
         <AppTitle />
         <MainCities cities={this.state.cities} />
-        <Chart days={this.state.days } />
+        {/*<Chart days={this.state.days } />*/}
         {/* <WeeklyForecast 
           main={this.state.main}
           listDT={listDT.filter((hourForecast,index) => index % 5 ).map( (hourForecast,index) => (

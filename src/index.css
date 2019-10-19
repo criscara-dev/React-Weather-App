@@ -1,5 +1,9 @@
 /******************** Appstyle  *************************/
 
+body {
+    margin: 0;
+}
+
 .appStyle {
     display: flex;
     font-family: 'Montserrat', sans-serif;
