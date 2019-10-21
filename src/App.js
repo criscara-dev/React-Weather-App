@@ -7,6 +7,9 @@ import AsideView from "./containers/AsideView";
 // Styles
 import "./App.css";
 
+
+//  console.log(process.env.REACT_APP_API_URL)
+
 function App() {
   return (
     <div className="appStyle">

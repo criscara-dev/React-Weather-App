@@ -1,10 +1,8 @@
 import React from "react";
-import axios from "axios";
 import CentralView from "../components/CentralView";
 import Chart from "../components/Chart";
+import openweathermap from '../api/openWeatherMap';
 
-// base URL FOR API call
-const baseURL = "http://api.openweathermap.org/data/2.5";
 
 class AsideView extends React.Component {
   state = {
@@ -25,31 +23,9 @@ class AsideView extends React.Component {
     chartData: []
   };
 
-  // getChartData(){
-  //     this.setState({
-  //         chartData:{
-  //             labels:['9:00','12:00','15:00', '18:00', '21:00'],
-  //             datasets:[
-  //                 {
-  //                     label:'Temperature',
-  //                     data:[
-  //                         164356,
-  //                         261656,
-  //                         234132,
-  //                         322764,
-  //                         343243,
-  //                         224434,
-  //                     ],
-  //                     backgroundColor:'rgba(255, 99, 132, 0.6)'
-  //                 }
-  //             ]
-  //         }
-  //     })
-  // }
-
   getCurrentWeather = async (latitude, longitude) => {
-    const link = `${baseURL}/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_URL}`;
-    const response = await axios.get(link);
+    const link = `/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_URL}`;
+    const response = await openweathermap.get(link);
     this.setState({
       latitude,
       longitude,
@@ -67,8 +43,8 @@ class AsideView extends React.Component {
   };
 
   getForecast = async (latitude, longitude) => {
-    const link = `${baseURL}/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_URL}`;
-    const response = await axios.get(link);
+    const link = `/forecast?lat=${latitude}&lon=${longitude}&appid=${process.env.REACT_APP_API_URL}`;
+    const response = await openweathermap.get(link);
     this.setState({
       chartData: response.data.list
     });

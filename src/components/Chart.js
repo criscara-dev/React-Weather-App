@@ -2,30 +2,6 @@ import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
 import moment from "moment";
 
-// chartData: {
-//     labels:['Milan','London','Rome', 'Berlin', 'Dublin'],
-//     datasets:[
-//         {
-//             label:'Population',
-//             data:[
-//                 164356,
-//                 261656,
-//                 234132,
-//                 322764,
-//                 343243,
-//                 224434,
-//             ],
-//             backgroundColor:[
-//                 'rgba(255, 99, 132, 0.6)',
-//                 'rgba(54, 162, 235, 0.6)',
-//                 'rgba(255, 206, 86, 0.6)',
-//                 'rgba(153, 102, 255, 0.6)',
-//                 'rgba(255, 99, 132, 0.6)',
-//             ]
-//         }
-//     ]
-// }
-
 export default class Chart extends Component {
   render() {
     const labels = this.props.chartData.map(el => {
@@ -51,12 +27,13 @@ export default class Chart extends Component {
           type: "bar",
           label: "Temperature",
           data: temperatures,
-          backgroundColor: "red"
+          backgroundColor: "orangered"
         }
       ]
     };
 
     console.log(this.props.chartData);
+    
     return (
       <div>
         <Bar
@@ -68,8 +45,16 @@ export default class Chart extends Component {
               fontSize: 25
             },
             legend: {
-              display: false
-            }
+              display: true,
+              position:'bottom'
+            },
+            scales: {
+              xAxes: [{
+                  ticks: {
+                      beginAtZero: false
+                  }
+              }]
+          }
           }}
         />
       </div>
