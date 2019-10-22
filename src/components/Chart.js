@@ -32,7 +32,7 @@ export default class Chart extends Component {
       ]
     };
 
-    console.log(this.props.chartData);
+    // console.log(this.props.chartData);
     
     return (
       <div>
