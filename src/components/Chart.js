@@ -27,13 +27,13 @@ export default class Chart extends Component {
           type: "bar",
           label: "Temperature",
           data: temperatures,
-          backgroundColor: "orangered"
+          backgroundColor: "yellow"
         }
       ]
     };
 
     // console.log(this.props.chartData);
-    
+
     return (
       <div>
         <Bar
@@ -46,15 +46,17 @@ export default class Chart extends Component {
             },
             legend: {
               display: true,
-              position:'bottom'
+              position: "bottom"
             },
             scales: {
-              xAxes: [{
+              xAxes: [
+                {
                   ticks: {
-                      beginAtZero: false
+                    beginAtZero: false
                   }
-              }]
-          }
+                }
+              ]
+            }
           }}
         />
       </div>
