@@ -32,7 +32,7 @@ const TodayCityData = ({
 
 export default class CityChart extends Component {
   render() {
-    const day = this.props.chartCityData.map(item => item.dt_txt);
+    const date = this.props.chartCityData.map(item => item.dt_txt);
     const temperature = this.props.chartCityData.map(item =>
       (item.main.temp - 273.15).toFixed(1)
     );
@@ -44,17 +44,44 @@ export default class CityChart extends Component {
     const icon = this.props.chartCityData.map(item => item.weather[0].icon);
     const celsius = temperature;
     // console.log(celsius)
+
     return (
-      <div>
-        <TodayCityData
-          day={day}
-          celsius={celsius}
-          humidity={humidity}
-          pressure={pressure}
-          icon={icon}
-          weather_main={weather_main}
-        />
+      <div
+        style={{
+          height: "600px",
+          overflowY: "scroll"
+        }}
+      >
+        {this.props.chartCityData.map(point => (
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ flex: 1 }}>
+              {moment(point.dt_txt).format("MMM D")}
+            </span>
+            <span style={{ flex: 1 }}>
+              {point.main.temp - (273.15).toFixed(1)}
+            </span>
+            <span style={{ flex: 1 }}>{point.main.humidity}</span>
+            <span style={{ flex: 1 }}> {point.main.pressure}</span>
+            <span style={{ flex: 1 }}>{point.weather[0].main}</span>
+            <img
+              alt="weather icon"
+              src={`https://openweathermap.org/img/w/${point.weather[0].icon}.png`}
+            />
+          </div>
+        ))}
       </div>
     );
+    // return (
+    //   <div>
+    //     <TodayCityData
+    //       day={day}
+    //       celsius={celsius}
+    //       humidity={humidity}
+    //       pressure={pressure}
+    //       icon={icon}
+    //       weather_main={weather_main}
+    //     />
+    //   </div>
+    // );
   }
 }

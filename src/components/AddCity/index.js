@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container, Input, Button, FormCitySearch } from "./addCity.styles";
 
 export default class AddCity extends Component {
   state = {
@@ -19,23 +20,19 @@ export default class AddCity extends Component {
 
   render() {
     return (
-      <div>
-        <form
-          style={{ display: "flex" }}
-          method="get"
-          onSubmit={this.handleSubmit}
-        >
-          <input
-            style={{ flex: "4" }}
+      <Container>
+        <FormCitySearch onSubmit={this.handleSubmit}>
+          <Input
             type="text"
             name="title"
             placeholder="ex. London,uk"
             value={this.state.title}
             onChange={this.onHandleChange}
           />
-          <input style={{ flex: "1" }} type="submit" value="+ add city" />
-        </form>
-      </div>
+          <Button>+ add city</Button>
+          <Button alt>Quick Search</Button>
+        </FormCitySearch>
+      </Container>
     );
   }
 }

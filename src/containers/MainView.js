@@ -1,13 +1,18 @@
 import React from "react";
-import MainHeader from "../components/MainHeader";
+import Select from "react-select";
 import AppTitle from "../components/AppTitle";
-import MainCities from "../components/MainCities";
 // import WeeklyForecast from "../components/WeeklyForecast";
 import CityList from "../components/CitiesList";
 import AddCity from "../components/AddCity";
-import CityChart from '../components/CityChart';
+import CityChart from "../components/CityChart";
 
 import openweathermap from "../api/openWeatherMap";
+
+const options = [
+  { value: "weather", label: "Weather" },
+  { value: "forecast", label: "Week Forecast" },
+  { value: "forecast/hourly", label: "Hourly Forecast" }
+];
 
 // let counter = 4;
 class MainView extends React.Component {
@@ -25,79 +30,22 @@ class MainView extends React.Component {
       { city: "London", country: "UK" },
       { city: "Paris", country: "France" }
     ],
-    days: [
-      {
-        weekday: "Monday",
-        humidityIcon: "fa-tint",
-        humidity: "54%",
-        temperatureIcon: "fa-sun",
-        temperature: "17",
-        maxTemp: "26"
-      },
-      {
-        weekday: "Tuesday",
-        humidityIcon: "fa-tint",
-        humidity: "54%",
-        temperatureIcon: "fa-sun",
-        temperature: "17",
-        maxTemp: "22"
-      },
-      {
-        weekday: "Wednesday",
-        humidityIcon: "fa-tint",
-        humidity: "54%",
-        temperatureIcon: "fa-sun",
-        temperature: "15",
-        maxTemp: "26"
-      },
-      {
-        weekday: "Thurday",
-        humidityIcon: "fa-tint",
-        humidity: "54%",
-        temperatureIcon: "fa-sun",
-        temperature: "14",
-        maxTemp: "25"
-      },
-      {
-        weekday: "Friday",
-        humidityIcon: "fa-tint",
-        humidity: "54%",
-        temperatureIcon: "fa-sun",
-        temperature: "19",
-        maxTemp: "26"
-      },
-      {
-        weekday: "Saturday",
-        humidityIcon: "fa-tint",
-        humidity: "54%",
-        temperatureIcon: "fa-sun",
-        temperature: "19",
-        maxTemp: "28"
-      },
-      {
-        weekday: "Sunday",
-        humidityIcon: "fa-tint",
-        humidity: "54%",
-        temperatureIcon: "fa-sun",
-        temperature: "17",
-        maxTemp: "25"
-      }
-    ],
-    listDT: []
+
+    listDT: [],
+    selectValue: "forecast"
   };
 
   // @TODO
   // api call to openweathermap passing city name
 
   onCitySelect = async id => {
-    const link = `/forecast?q=${id}&APPID=${process.env.REACT_APP_API_URL}`;
+    const link = `/${this.state.selectValue}?q=${id}&APPID=${process.env.REACT_APP_API_URL}`;
     // const link = `/forecast?q=${id},uk&APPID=${process.env.REACT_APP_API_URL}`;
     const response = await openweathermap.get(link);
     // console.log(response.data.list[0]);
     this.setState({
       chartCityData: response.data.list
     });
-    
   };
 
   delCity = id => {
@@ -118,12 +66,15 @@ class MainView extends React.Component {
     });
   };
 
+  onHandleSelect = data => {
+    this.setState({ selectValue: data.value });
+  };
+
   render() {
     // let listDT = this.state.listDT;
-const {chartCityData} = this.state;
+    const { chartCityData } = this.state;
     return (
       <div className="mainStyle">
-        <MainHeader />
         <AppTitle />
         <AddCity addCity={this.addCity} />
         <div style={addStyle}>
@@ -133,7 +84,9 @@ const {chartCityData} = this.state;
             onCitySelect={this.onCitySelect}
           />
         </div>
-        <MainCities cities={this.state.cities} />
+        <div style={{ width: 200 }}>
+          <Select options={options} onChange={this.onHandleSelect} />
+        </div>
         {/* <WeeklyForecast />       */}
         <CityChart chartCityData={chartCityData} />
       </div>
