@@ -5,6 +5,9 @@ import MainCities from "../components/MainCities";
 // import WeeklyForecast from "../components/WeeklyForecast";
 import CityList from "../components/CitiesList";
 import AddCity from "../components/AddCity";
+import CityChart from '../components/CityChart';
+
+import openweathermap from "../api/openWeatherMap";
 
 // let counter = 4;
 class MainView extends React.Component {
@@ -14,18 +17,9 @@ class MainView extends React.Component {
       //   id: 1,
       //   title:'Berlin',
       //   remove:false
-      // },
-      // {
-      //   id: 2,
-      //   title:'London',
-      //   remove:false
-      // },
-      // {
-      //   id: 3,
-      //   title:'Paris',
-      //   remove:false
       // }
     ],
+    chartCityData: [],
     cities: [
       { city: "Berlin", country: "Germany" },
       { city: "London", country: "UK" },
@@ -92,6 +86,20 @@ class MainView extends React.Component {
     listDT: []
   };
 
+  // @TODO
+  // api call to openweathermap passing city name
+
+  onCitySelect = async id => {
+    const link = `/forecast?q=${id}&APPID=${process.env.REACT_APP_API_URL}`;
+    // const link = `/forecast?q=${id},uk&APPID=${process.env.REACT_APP_API_URL}`;
+    const response = await openweathermap.get(link);
+    // console.log(response.data.list[0]);
+    this.setState({
+      chartCityData: response.data.list
+    });
+    
+  };
+
   delCity = id => {
     // console.log(id)
     this.setState({
@@ -110,13 +118,9 @@ class MainView extends React.Component {
     });
   };
 
-  selectCity = () => {
-    console.log("hi!");
-  };
-
   render() {
     // let listDT = this.state.listDT;
-
+const {chartCityData} = this.state;
     return (
       <div className="mainStyle">
         <MainHeader />
@@ -126,11 +130,12 @@ class MainView extends React.Component {
           <CityList
             addToList={this.state.addToList}
             delCity={this.delCity}
-            selectCity={this.selectCity}
+            onCitySelect={this.onCitySelect}
           />
         </div>
         <MainCities cities={this.state.cities} />
         {/* <WeeklyForecast />       */}
+        <CityChart chartCityData={chartCityData} />
       </div>
     );
   }

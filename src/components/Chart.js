@@ -5,10 +5,10 @@ import moment from "moment";
 export default class Chart extends Component {
   render() {
     const labels = this.props.chartData.map(el => {
-      return moment(el.dt_txt).format("H");
+      return moment(el.dt_txt).format("LL - H");
     });
     const temperatures = this.props.chartData.map(el => {
-      return el.main.temp;
+      return el.main.temp - 273.15;
     });
     const humidity = this.props.chartData.map(el => {
       return el.main.humidity;
@@ -31,8 +31,6 @@ export default class Chart extends Component {
         }
       ]
     };
-
-    // console.log(this.props.chartData);
 
     return (
       <div>
