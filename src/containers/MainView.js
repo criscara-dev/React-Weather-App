@@ -2,9 +2,8 @@ import React from "react";
 import Select from "react-select";
 
 import AppTitle from "../components/AppTitle";
-import CityList from "../components/CitiesList";
-import AddCity from "../components/AddCity";
 import CityChart from "../components/CityChart";
+import SearchBar from "../components/SearchBar";
 
 import openweathermap from "../api/openWeatherMap";
 
@@ -15,35 +14,18 @@ const options = [
 
 class MainView extends React.Component {
   state = {
-    addToList: [],
-    chartCityData: [],
+    forecastCity: {},
+    forecastData: [],
     selectValue: "forecast"
   };
 
-  onCitySelect = async id => {
-    const link = `/${this.state.selectValue}?q=${id}&APPID=${process.env.REACT_APP_API_URL}`;
-    // const link = `/forecast?q=${id},uk&APPID=${process.env.REACT_APP_API_URL}`;
+  onTermSubmit = async term => {
+    const link = `/${this.state.selectValue}?q=${term}&APPID=${process.env.REACT_APP_API_URL}`;
     const response = await openweathermap.get(link);
-    console.log(response.data.list);
+    // console.log(response.data.list);
     this.setState({
-      chartCityData: response.data.list
-    });
-  };
-
-  delCity = id => {
-    this.setState({
-      addToList: [...this.state.addToList.filter(city => city.id !== id)]
-    });
-  };
-
-  addCity = title => {
-    // console.log(title)
-    const newCity = {
-      id: title,
-      title
-    };
-    this.setState({
-      addToList: [...this.state.addToList, newCity]
+      forecastCity: response.data,
+      forecastData: response.data.list
     });
   };
 
@@ -51,23 +33,22 @@ class MainView extends React.Component {
     this.setState({ selectValue: data.value });
   };
 
+  componentDidMount() {
+    // default search
+    this.onTermSubmit("London");
+  }
+
   render() {
-    const { chartCityData } = this.state;
+    const { forecastData, forecastCity } = this.state;
     return (
       <div className="mainStyle">
         <AppTitle />
-        <AddCity addCity={this.addCity} />
-        <div style={addStyle}>
-          <CityList
-            addToList={this.state.addToList}
-            delCity={this.delCity}
-            onCitySelect={this.onCitySelect}
-          />
-        </div>
+        <div style={addStyle}></div>
         <div style={{ width: 200 }}>
           <Select options={options} onChange={this.onHandleSelect} />
         </div>
-        <CityChart chartCityData={chartCityData} />
+        <SearchBar onFormSubmit={this.onTermSubmit} />
+        <CityChart forecastData={forecastData} forecastCity={forecastCity} />
       </div>
     );
   }
