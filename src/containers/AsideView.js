@@ -1,6 +1,8 @@
 import React from "react";
+
 import CentralView from "../components/CentralView";
 import Chart from "../components/Chart";
+
 import openweathermap from "../api/openWeatherMap";
 
 class AsideView extends React.Component {

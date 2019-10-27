@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 export default class CityItem extends Component {
-  removeItem = e => {
-    // console.log(this.props)
-  };
-
   render() {
     const { id, title } = this.props.buttonAdd;
 
