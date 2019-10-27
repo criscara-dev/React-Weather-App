@@ -3,7 +3,7 @@ import moment from "moment";
 
 export default class CityChart extends Component {
   render() {
-    // console.log(this.props.forecastCity.name);
+    console.log(this.props.forecastCity.name);
     if (!this.props.forecastData) {
       return <div>Feature not available yet...</div>;
     }
