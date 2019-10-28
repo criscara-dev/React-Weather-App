@@ -14,7 +14,7 @@ const options = [
 
 class MainView extends React.Component {
   state = {
-    forecastCity: {},
+    forecastCity: [],
     forecastData: [],
     selectValue: "forecast"
   };
