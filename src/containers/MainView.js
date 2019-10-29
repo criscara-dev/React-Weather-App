@@ -16,7 +16,8 @@ class MainView extends React.Component {
   state = {
     forecastCity: [],
     forecastData: [],
-    selectValue: "forecast"
+    forecastCityName: "",
+    selectValue: "weather"
   };
 
   onTermSubmit = async term => {
@@ -25,7 +26,8 @@ class MainView extends React.Component {
     // console.log(response.data.list);
     this.setState({
       forecastCity: response.data,
-      forecastData: response.data.list
+      forecastData: response.data.list,
+      forecastCityName: response.data.city
     });
   };
 
@@ -39,23 +41,23 @@ class MainView extends React.Component {
   }
 
   render() {
-    const { forecastData, forecastCity } = this.state;
+    const { forecastData, forecastCity, forecastCityName } = this.state;
     return (
       <div className="mainStyle">
         <AppTitle />
-        <div style={addStyle}></div>
-        <div style={{ width: 200 }}>
+        <div style={{ width: 200, marginBottom: ".5rem " }}>
           <Select options={options} onChange={this.onHandleSelect} />
         </div>
         <SearchBar onFormSubmit={this.onTermSubmit} />
-        <CityChart forecastData={forecastData} forecastCity={forecastCity} />
+        <br />
+        <CityChart
+          forecastData={forecastData}
+          forecastCity={forecastCity}
+          forecastCityName={forecastCityName}
+        />
       </div>
     );
   }
 }
-
-const addStyle = {
-  display: "flex"
-};
 
 export default MainView;

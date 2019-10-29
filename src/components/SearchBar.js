@@ -1,27 +1,34 @@
 import React, { Component } from "react";
 // import { Container, Input, Button, FormCitySearch } from "./addCity.styles";
 
-// const borderRadius = "5px";
+import styled from "styled-components";
 
-// const Input = styled.input`
-//   height: 32px;
-//   width: 150px;
-//   border-radius: ${borderRadius};
-//   font-size: 24px;
-//   margin-right: 24px;
-// `;
+const borderRadius = "5px";
 
-// const Container = styled.div``;
+const Input = styled.input`
+  height: 32px;
+  width: 150px;
+  border-radius: ${borderRadius};
+  font-size: 1rem;
+  &::placeholder {
+    color: #8e8e8e;
+    font-size: 1rem;
+    padding-left: 0.625rem;
+  }
+`;
 
-// const FormCitySearch = styled.form`
-//   display: flex;
-// `;
+const Container = styled.div``;
 
-// const Button = styled.button`
-//   border-radius: ${borderRadius};
-//   background: ${props => (props.alt ? "white" : "#333")};
-//   color: ${props => (props.alt ? "black" : "white")};
-// `;
+const FormCitySearch = styled.form`
+  display: flex;
+`;
+
+const Button = styled.button`
+  border-radius: ${borderRadius};
+  background: ${props => (props.alt ? "#110E3C" : "#333")};
+  color: ${props => (props.alt ? "white" : "black")};
+  font-size: 1rem;
+`;
 
 export default class SearchBar extends Component {
   state = {
@@ -41,19 +48,18 @@ export default class SearchBar extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.onFormSubmit}>
-          <input
+      <Container>
+        <FormCitySearch onSubmit={this.onFormSubmit}>
+          <Input
             type="text"
             name="city"
             placeholder="ex. London,uk"
             value={this.state.term}
             onChange={this.onInputChange}
           />
-          {/* <button>+ add city</button> */}
-          <button alt>Quick Search</button>
-        </form>
-      </div>
+          <Button alt>Quick Search</Button>
+        </FormCitySearch>
+      </Container>
     );
   }
 }

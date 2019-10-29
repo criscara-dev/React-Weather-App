@@ -1,21 +1,35 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import moment from "moment";
 
 export default class CityChart extends Component {
   render() {
-    console.log(this.props.forecastCity);
+    // console.log(this.props.forecastCityName.name);
     const date = moment(new Date()).format("MMM D LT");
+    const Div = styled.div`
+      margin-bottom: 0.5rem;
+    `;
+    const SpanAlternate = styled.div`
+      &:nth-child(even) {
+        background-color: lightyellow;
+      }
+    `;
 
     if (!this.props.forecastData) {
       return (
-        <div>
-          Current weather in: {this.props.forecastCity.name},&nbsp;
-          {this.props.forecastCity.sys.country}
-          <div style={{ textTransform: "capitalize" }}>
+        <div style={{ width: 270 }}>
+          <Div>
+            Current weather in:{" "}
+            <strong>
+              {this.props.forecastCity.name},&nbsp;
+              {this.props.forecastCity.sys.country}
+            </strong>
+          </Div>
+          <Div style={{ textTransform: "capitalize" }}>
             {this.props.forecastCity.weather.map(item => item.description)}
-          </div>
-          <div>{`${date}`}</div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          </Div>
+          <Div>{`${date}`}</Div>
+          <Div style={{ display: "flex", alignItems: "center" }}>
             {" "}
             <img
               style={{}}
@@ -25,19 +39,21 @@ export default class CityChart extends Component {
               )}.png`}
             />{" "}
             {(this.props.forecastCity.main.temp - 273.15).toFixed(1)} °C
-          </div>
-          <div>
-            Wind speed: {this.props.forecastCity.wind.speed} m/s, and direction:
-            ({this.props.forecastCity.wind.deg})
-          </div>
-          <div>Pressure: {this.props.forecastCity.main.pressure} hPa</div>
-          <div>Humidity: {this.props.forecastCity.main.humidity} %</div>
-          <div>
-            Sunrise: {moment(this.props.forecastCity.sys.sunrise).format("LTS")}
-          </div>
-          <div>
-            Sunset: {moment(this.props.forecastCity.sys.sunset).format("LTS")}
-          </div>
+          </Div>
+          <Div>
+            <Div>Wind speed: {this.props.forecastCity.wind.speed} m/s,</Div>
+            <Div>
+              and direction: ({this.props.forecastCity.wind.deg}) in degrees.
+            </Div>
+          </Div>
+          <Div>Pressure: {this.props.forecastCity.main.pressure} hPa</Div>
+          <Div>Humidity: {this.props.forecastCity.main.humidity} %</Div>
+          <Div>
+            Sunrise: {moment(this.props.forecastCity.sys.sunrise).format("LT")}
+          </Div>
+          <Div>
+            Sunset: {moment(this.props.forecastCity.sys.sunset).format("LT")}
+          </Div>
         </div>
       );
     }
@@ -48,11 +64,16 @@ export default class CityChart extends Component {
           overflowY: "scroll"
         }}
       >
-        <div>Forecast in: {this.props.name}</div>
+        <div style={{ marginBottom: ".5rem" }}>
+          Forecast in: <strong>{this.props.forecastCityName.name}</strong>
+        </div>
         {this.props.forecastData.map(point => (
-          <div
+          <SpanAlternate
             key={point.dt}
-            style={{ display: "flex", justifyContent: "space-between" }}
+            style={{
+              display: "flex",
+              justifyContent: "space-between"
+            }}
           >
             <span style={{ flex: 1 }}>
               {moment(point.dt_txt).format("MMM D LT")}
@@ -67,7 +88,7 @@ export default class CityChart extends Component {
               alt={point.weather[0].description}
               src={`https://openweathermap.org/img/w/${point.weather[0].icon}.png`}
             />
-          </div>
+          </SpanAlternate>
         ))}
       </div>
     );
