@@ -5,6 +5,16 @@ import Chart from "../components/Chart";
 
 import openweathermap from "../api/openWeatherMap";
 
+const asideStyle = {
+  display: "flex",
+  flexDirection: "column",
+  flex: 1.5,
+  order: 2,
+  backgroundColor: "#110E3C",
+  color: "#fff",
+  flexWrap: "wrap"
+};
+
 class AsideView extends React.Component {
   state = {
     latitude: 0,
@@ -70,7 +80,7 @@ class AsideView extends React.Component {
   render() {
     const { chartData } = this.state;
     return (
-      <div className="asideStyle">
+      <div style={asideStyle}>
         <br />
         <CentralView
           main={this.state.main}

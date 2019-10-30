@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Container, Input, Button, FormCitySearch } from "./addCity.styles";
 
 import styled from "styled-components";
 
@@ -17,7 +16,11 @@ const Input = styled.input`
   }
 `;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+`;
 
 const FormCitySearch = styled.form`
   display: flex;

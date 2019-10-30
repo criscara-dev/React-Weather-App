@@ -27,7 +27,7 @@ export default class Chart extends Component {
           type: "bar",
           label: "Temperature",
           data: temperatures,
-          backgroundColor: "yellow"
+          backgroundColor: "#E0C155"
         }
       ]
     };

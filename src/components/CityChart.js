@@ -17,7 +17,15 @@ export default class CityChart extends Component {
 
     if (!this.props.forecastData) {
       return (
-        <div style={{ width: 270 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            textAlign: "center"
+          }}
+        >
           <Div>
             Current weather in:{" "}
             <strong>

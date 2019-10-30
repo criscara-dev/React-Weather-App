@@ -1,5 +1,10 @@
 import React from "react";
 import moment from "moment";
+import styled from "styled-components";
+
+const Centered = styled.div`
+  text-align: center;
+`;
 
 const TodayData = ({
   todayIcon,
@@ -15,45 +20,54 @@ const TodayData = ({
   const celsius = temperature - 273.15;
   return (
     <div>
-      <section className="today">
+      <section style={{ display: "flex", justifyContent: "center" }}>
         <article>
-          <div className="aside__today--article">
-            <div className="aside__today--date1">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flex: 6
+            }}
+          >
+            <div style={{ flex: 1, marginRight: "1rem" }}>
               <img
                 alt="weather icon"
                 src={`https://openweathermap.org/img/w/${todayIcon}.png`}
               />
             </div>
-            <div className="aside__today--date2">
+            <div style={{ flex: 1, textTransform: "capitalize" }}>
               <h5>{moment(Date.now()).format("MMM Do H[:]mm")}</h5>
             </div>
           </div>
           <div>
-            <h3 className="aside__today--date2 odayDescription">
+            <h3 style={{ flex: 1, textTransform: "capitalize" }}>
               - {todayDesc} -
             </h3>
           </div>
         </article>
       </section>
-      <section className="data__2">
-        <div className="aside__today--degree">
-          <div>{celsius.toFixed(1)}</div>
-          <div className="degree">°C</div>
+      <section>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ fontSize: 64, fontWeight: 100 }}>
+            {celsius.toFixed(1)}
+          </div>
+          <div style={{ lineHeight: 3 }}>°C</div>
         </div>
         <div>
-          <div className="aside__today__2--location">
+          <Centered>
             {activeCity}, {activeCountry}
-          </div>
+          </Centered>
           <br />
-          <div className="aside__today__2--location">
+          <Centered>
             Humidity: <b>{activeHumidity}%</b> - Pressure:{" "}
             <b>{activePressure}hPa</b>
-          </div>
+          </Centered>
           <br />
-          <div className="aside__today__2--felt">
+          <Centered>
             Sunrise: {moment.unix(activeSunrise).format("LTS")} 🌎 Sunset:{" "}
             {moment.unix(activeSunset).format("LTS")}
-          </div>
+          </Centered>
         </div>
       </section>
     </div>

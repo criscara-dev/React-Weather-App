@@ -12,6 +12,16 @@ const options = [
   { value: "forecast", label: "Week Forecast" }
 ];
 
+const mainStyle = {
+  margin: 0,
+  marginRight: "1rem",
+  marginLeft: "1rem",
+  flexDirection: "column",
+  backgroundColor: "#F3FBFF",
+  flex: 2,
+  flexWrap: "wrap"
+};
+
 class MainView extends React.Component {
   state = {
     forecastCity: [],
@@ -43,14 +53,21 @@ class MainView extends React.Component {
   render() {
     const { forecastData, forecastCity, forecastCityName } = this.state;
     return (
-      <div className="mainStyle">
+      <div style={mainStyle}>
         <AppTitle />
         <div style={{ width: 200, marginBottom: ".5rem " }}>
-          <Select options={options} onChange={this.onHandleSelect} />
+          <Select
+            style={{ flex: 1, justifyContent: "center" }}
+            options={options}
+            onChange={this.onHandleSelect}
+          />
         </div>
         <SearchBar onFormSubmit={this.onTermSubmit} />
         <br />
         <CityChart
+          style={{
+            display: "flex"
+          }}
           forecastData={forecastData}
           forecastCity={forecastCity}
           forecastCityName={forecastCityName}
