@@ -8,8 +8,8 @@ const AppTitle = () => {
     flex-direction: column;
     text-align: center;
     margin: 1rem 0;
-    fontsize: 1.25rem;
-    fontweight: 300;
+    font-size: 36px;
+    font-weight: 300;
     color: "#110E3C";
   `;
 

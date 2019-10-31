@@ -3,7 +3,13 @@ import React from "react";
 import MainView from "./containers/MainView";
 import AsideView from "./containers/AsideView";
 
-//  console.log(process.env.REACT_APP_API_URL)
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin:0
+  }
+`;
 
 const appStyle = {
   display: "flex",
@@ -19,6 +25,7 @@ const appStyle = {
 function App() {
   return (
     <div style={appStyle}>
+      <GlobalStyle />
       <MainView />
       <AsideView />
     </div>

@@ -16,10 +16,12 @@ const mainStyle = {
   margin: 0,
   marginRight: "1rem",
   marginLeft: "1rem",
-  flexDirection: "column",
   backgroundColor: "#F3FBFF",
+  // display: "flex",
   flex: 2,
-  flexWrap: "wrap"
+  flexWrap: "wrap",
+  flexDirection: "column",
+  alignItems: "center"
 };
 
 class MainView extends React.Component {
@@ -33,7 +35,7 @@ class MainView extends React.Component {
   onTermSubmit = async term => {
     const link = `/${this.state.selectValue}?q=${term}&APPID=${process.env.REACT_APP_API_URL}`;
     const response = await openweathermap.get(link);
-    // console.log(response.data.list);
+    // console.log(response.data.city);
     this.setState({
       forecastCity: response.data,
       forecastData: response.data.list,
@@ -55,12 +57,19 @@ class MainView extends React.Component {
     return (
       <div style={mainStyle}>
         <AppTitle />
-        <div style={{ width: 200, marginBottom: ".5rem " }}>
-          <Select
-            style={{ flex: 1, justifyContent: "center" }}
-            options={options}
-            onChange={this.onHandleSelect}
-          />
+        <div
+          style={{
+            marginBottom: ".5rem",
+            width: "20%",
+            textAlign: "center",
+            justifyContent: "center",
+            flex: "0 1 320px",
+            display: "flex",
+            flexDirection: "column",
+            margin: "1rem 0"
+          }}
+        >
+          <Select options={options} onChange={this.onHandleSelect} />
         </div>
         <SearchBar onFormSubmit={this.onTermSubmit} />
         <br />
