@@ -17,7 +17,6 @@ const mainStyle = {
   marginRight: "1rem",
   marginLeft: "1rem",
   backgroundColor: "#F3FBFF",
-  // display: "flex",
   flex: 2,
   flexWrap: "wrap",
   flexDirection: "column",
@@ -60,16 +59,16 @@ class MainView extends React.Component {
         <div
           style={{
             marginBottom: ".5rem",
-            width: "20%",
-            textAlign: "center",
-            justifyContent: "center",
             flex: "0 1 320px",
             display: "flex",
-            flexDirection: "column",
+            textAlign: "center",
+            justifyContent: "center",
             margin: "1rem 0"
           }}
         >
-          <Select options={options} onChange={this.onHandleSelect} />
+          <div style={{ width: 270 }}>
+            <Select options={options} onChange={this.onHandleSelect} />
+          </div>
         </div>
         <SearchBar onFormSubmit={this.onTermSubmit} />
         <br />
