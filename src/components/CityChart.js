@@ -57,10 +57,12 @@ export default class CityChart extends Component {
           <Div>Pressure: {this.props.forecastCity.main.pressure} hPa</Div>
           <Div>Humidity: {this.props.forecastCity.main.humidity} %</Div>
           <Div>
-            Sunrise: {moment(this.props.forecastCity.sys.sunrise).format("LT")}
+            Sunrise:{" "}
+            {moment.unix(this.props.forecastCity.sys.sunrise).format("LT")}
           </Div>
           <Div>
-            Sunset: {moment(this.props.forecastCity.sys.sunset).format("LT")}
+            Sunset:{" "}
+            {moment.unix(this.props.forecastCity.sys.sunset).format("LT")}
           </Div>
         </div>
       );
