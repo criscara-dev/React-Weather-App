@@ -4,9 +4,12 @@ import moment from "moment";
 
 export default class Chart extends Component {
   render() {
-    const labels = this.props.chartData.map(el => {
-      return moment(el.dt_txt).format("LL - H");
-    });
+    const labels = this.props.chartData
+      .filter((value, index) => index % 2 === 0)
+      .map((el, index) => {
+        const time = moment(el.dt_txt).format("D/M - H");
+        return time;
+      });
     const temperatures = this.props.chartData.map(el => {
       return el.main.temp - 273.15;
     });
@@ -27,7 +30,8 @@ export default class Chart extends Component {
           type: "bar",
           label: "Temperature",
           data: temperatures,
-          backgroundColor: "#ffce35"
+          backgroundColor: "#ffce35",
+          barThickness: 2
         }
       ]
     };

@@ -35,7 +35,6 @@ class MainView extends React.Component {
   onTermSubmit = async () => {
     const link = `/${this.state.selectValue}?q=${this.state.searchTerm}&APPID=${process.env.REACT_APP_API_URL}`;
     const response = await openweathermap.get(link);
-    // console.log(response.data.city);
     this.setState({
       forecastCity: response.data,
       forecastData: response.data.list,
@@ -69,7 +68,11 @@ class MainView extends React.Component {
           }}
         >
           <div style={{ width: 270 }}>
-            <Select options={options} onChange={this.onHandleSelect} />
+            <Select
+              options={options}
+              onChange={this.onHandleSelect}
+              defaultValue={{ label: "Current Weather", value: "weather" }}
+            />
           </div>
         </div>
         <SearchBar
