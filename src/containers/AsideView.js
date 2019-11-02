@@ -2,7 +2,6 @@ import React from "react";
 
 import CentralView from "../components/CentralView";
 import Chart from "../components/Chart";
-import CurrentLocation from "../components/CurrentLocation";
 
 import openweathermap from "../api/openWeatherMap";
 
@@ -83,7 +82,6 @@ class AsideView extends React.Component {
     const { chartData } = this.state;
     return (
       <div style={asideStyle}>
-        <CurrentLocation />
         <CentralView
           main={this.state.main}
           desc={this.state.desc}

@@ -38,15 +38,12 @@ export default class SearchBar extends Component {
     term: ""
   };
   onInputChange = e => {
-    this.setState({
-      term: e.target.value
-    });
+    this.props.handleInput(e.target.value);
   };
 
   onFormSubmit = e => {
     e.preventDefault();
-    this.props.onFormSubmit(this.state.term);
-    this.setState({ term: "" });
+    this.props.onFormSubmit();
   };
 
   render() {
@@ -57,7 +54,7 @@ export default class SearchBar extends Component {
             type="text"
             name="city"
             placeholder="ex. London,uk"
-            value={this.state.term}
+            value={this.props.searchTerm}
             onChange={this.onInputChange}
           />
           <Button alt>Quick Search</Button>

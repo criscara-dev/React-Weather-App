@@ -1,34 +1,33 @@
 import React from "react";
-// containers
+import styled from "styled-components";
+import reset from "styled-reset";
 import MainView from "./containers/MainView";
 import AsideView from "./containers/AsideView";
 
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    margin:0
-  }
+ ${reset}
 `;
 
-const appStyle = {
-  display: "flex",
-  fontFamily: "Montserrat",
-  margin: 0,
-  padding: 0,
-  fontSize: "100%",
-  boxSizing: "border-box",
-  flexWrap: "wrap",
-  height: "100vh"
-};
+const Container = styled.div`
+  display: flex;
+  font-family: Montserrat;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  height: 100vh;
+`;
 
 function App() {
   return (
-    <div style={appStyle}>
+    <Container>
       <GlobalStyle />
       <MainView />
       <AsideView />
-    </div>
+    </Container>
   );
 }
 

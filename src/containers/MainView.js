@@ -28,11 +28,12 @@ class MainView extends React.Component {
     forecastCity: [],
     forecastData: [],
     forecastCityName: "",
-    selectValue: "weather"
+    selectValue: "weather",
+    searchTerm: "London"
   };
 
-  onTermSubmit = async term => {
-    const link = `/${this.state.selectValue}?q=${term}&APPID=${process.env.REACT_APP_API_URL}`;
+  onTermSubmit = async () => {
+    const link = `/${this.state.selectValue}?q=${this.state.searchTerm}&APPID=${process.env.REACT_APP_API_URL}`;
     const response = await openweathermap.get(link);
     // console.log(response.data.city);
     this.setState({
@@ -46,9 +47,11 @@ class MainView extends React.Component {
     this.setState({ selectValue: data.value });
   };
 
+  handleInput = value => this.setState({ searchTerm: value });
+
   componentDidMount() {
     // default search
-    this.onTermSubmit("London");
+    this.onTermSubmit(this.state.searchTerm);
   }
 
   render() {
@@ -69,12 +72,13 @@ class MainView extends React.Component {
             <Select options={options} onChange={this.onHandleSelect} />
           </div>
         </div>
-        <SearchBar onFormSubmit={this.onTermSubmit} />
+        <SearchBar
+          onFormSubmit={this.onTermSubmit}
+          handleInput={this.handleInput}
+          searchTerm={this.state.searchTerm}
+        />
         <br />
         <CityChart
-          style={{
-            display: "flex"
-          }}
           forecastData={forecastData}
           forecastCity={forecastCity}
           forecastCityName={forecastCityName}
