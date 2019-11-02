@@ -3,9 +3,6 @@ import styled from "styled-components";
 
 const AppTitle = () => {
   const Title = styled.div`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     text-align: center;
     margin: 1rem 0;
     font-size: 36px;

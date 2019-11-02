@@ -58,7 +58,6 @@ class MainView extends React.Component {
         <AppTitle />
         <div
           style={{
-            marginBottom: ".5rem",
             flex: "0 1 320px",
             display: "flex",
             textAlign: "center",

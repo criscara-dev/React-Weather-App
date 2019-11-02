@@ -4,10 +4,9 @@ import moment from "moment";
 
 export default class CityChart extends Component {
   render() {
-    // console.log(this.props.forecastCityName.name);
     const date = moment(new Date()).format("MMM D LT");
     const Div = styled.div`
-      margin-bottom: 0.5rem;
+      margin-bottom: ${props => (props.first ? "3rem" : "1rem")};
     `;
     const SpanAlternate = styled.div`
       &:nth-child(even) {
@@ -23,10 +22,11 @@ export default class CityChart extends Component {
             alignItems: "center",
             justifyContent: "center",
             flexDirection: "column",
-            textAlign: "center"
+            textAlign: "center",
+            marginTop: "3rem"
           }}
         >
-          <Div>
+          <Div first>
             Current weather in:{" "}
             <strong>
               {this.props.forecastCity.name},&nbsp;
@@ -50,9 +50,7 @@ export default class CityChart extends Component {
           </Div>
           <Div>
             <Div>Wind speed: {this.props.forecastCity.wind.speed} m/s,</Div>
-            <Div>
-              and direction: ({this.props.forecastCity.wind.deg}) in degrees.
-            </Div>
+            <Div>Direction: ({this.props.forecastCity.wind.deg})°</Div>
           </Div>
           <Div>Pressure: {this.props.forecastCity.main.pressure} hPa</Div>
           <Div>Humidity: {this.props.forecastCity.main.humidity} %</Div>
@@ -74,7 +72,7 @@ export default class CityChart extends Component {
           overflowY: "scroll"
         }}
       >
-        <div style={{ marginBottom: ".5rem" }}>
+        <div style={{ marginBottom: "1rem" }}>
           Forecast in: <strong>{this.props.forecastCityName.name}</strong>
         </div>
         {this.props.forecastData.map(point => (

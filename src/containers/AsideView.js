@@ -2,6 +2,7 @@ import React from "react";
 
 import CentralView from "../components/CentralView";
 import Chart from "../components/Chart";
+import CurrentLocation from "../components/CurrentLocation";
 
 import openweathermap from "../api/openWeatherMap";
 
@@ -12,7 +13,8 @@ const asideStyle = {
   order: 2,
   backgroundColor: "#110E3C",
   color: "#fff",
-  flexWrap: "wrap"
+  flexWrap: "wrap",
+  padding: "1rem"
 };
 
 class AsideView extends React.Component {
@@ -81,7 +83,7 @@ class AsideView extends React.Component {
     const { chartData } = this.state;
     return (
       <div style={asideStyle}>
-        <br />
+        <CurrentLocation />
         <CentralView
           main={this.state.main}
           desc={this.state.desc}
