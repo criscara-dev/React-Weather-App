@@ -13,10 +13,7 @@ const GlobalStyle = createGlobalStyle`
 const Container = styled.div`
   display: flex;
   font-family: "Montserrat", sans-serif;
-  margin: 0;
-  padding: 0;
   font-size: 100%;
-  box-sizing: border-box;
   flex-wrap: wrap;
   height: 100vh;
 `;

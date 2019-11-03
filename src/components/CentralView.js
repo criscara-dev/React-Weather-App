@@ -8,6 +8,15 @@ const Centered = styled.div`
   text-align: center;
   padding-bottom: 2rem;
   text-transform: ${props => (props.desc ? "capitalize" : "none")};
+  @media (max-width: 414px) {
+    text-transform:capitalize;
+    padding: 1rem
+    background-color: ${props => (props.title ? "lightgrey" : "none")};
+    color: ${props => (props.title ? "black" : "none")};
+    font-weight:${props => (props.title ? 700 : 300)};
+    font-size:${props => (props.title ? "1.5rem" : ".8rem")};
+    vh:100%;
+  }
 `;
 
 const Deg = styled.div`
@@ -43,7 +52,7 @@ const TodayData = ({
   const celsius = temperature - 273.15;
   return (
     <React.Fragment>
-      <Centered>Current weather:</Centered>
+      <Centered title>Current weather:</Centered>
       <Centered>
         <IconDate>
           <img
@@ -76,8 +85,8 @@ const TodayData = ({
       </Centered>
 
       <Centered>
-        Sunrise: {moment.unix(activeSunrise).format("LTS")} 🌎 Sunset:{" "}
-        {moment.unix(activeSunset).format("LTS")}
+        <span>Sunrise: {moment.unix(activeSunrise).format("LTS")}</span> 🌎{" "}
+        <span>Sunset: {moment.unix(activeSunset).format("LTS")}</span>
       </Centered>
     </React.Fragment>
   );

@@ -26,6 +26,10 @@ const options = [
 const Main = styled.div`
   flex: 2;
   background-color: #f3fbff;
+  @media (max-width: 414px) {
+    display: none;
+    vh: 100px;
+  }
 `;
 
 class MainView extends React.Component {
@@ -63,7 +67,6 @@ class MainView extends React.Component {
     return (
       <Main>
         <AppTitle />
-
         <SelectContainer>
           <SelectForm>
             <Select
@@ -73,7 +76,6 @@ class MainView extends React.Component {
             />
           </SelectForm>
         </SelectContainer>
-
         <SearchBar
           onFormSubmit={this.onTermSubmit}
           handleInput={this.handleInput}
