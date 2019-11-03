@@ -7,6 +7,7 @@ const Centered = styled.div`
   justify-content: center;
   text-align: center;
   padding-bottom: 2rem;
+  text-transform: ${props => (props.desc ? "capitalize" : "none")};
 `;
 
 const Deg = styled.div`
@@ -22,6 +23,10 @@ const IconDate = styled.div`
   display: flex;
   align-items: center;
   padding: 0.5rem;
+`;
+
+const Strong = styled.strong`
+  font-weight: 700;
 `;
 
 const TodayData = ({
@@ -49,7 +54,7 @@ const TodayData = ({
         </IconDate>
       </Centered>
 
-      <Centered>
+      <Centered desc>
         <h3>- {todayDesc} -</h3>
       </Centered>
 
@@ -63,8 +68,11 @@ const TodayData = ({
       </Centered>
 
       <Centered>
-        Humidity: <b>{activeHumidity}%</b> - Pressure:{" "}
-        <b>{activePressure}hPa</b>
+        Humidity:<Strong> {activeHumidity}%</Strong> - Pressure:{" "}
+        <Strong>
+          {activePressure}
+          hPa
+        </Strong>
       </Centered>
 
       <Centered>
