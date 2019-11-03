@@ -1,20 +1,21 @@
 import React from "react";
+import styled from "styled-components";
 
 import CentralView from "../components/CentralView";
 import Chart from "../components/Chart";
 
 import openweathermap from "../api/openWeatherMap";
 
-const asideStyle = {
-  display: "flex",
-  flexDirection: "column",
-  flex: 1.5,
-  order: 2,
-  backgroundColor: "#110E3C",
-  color: "#fff",
-  flexWrap: "wrap",
-  padding: "1rem"
-};
+const Aside = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1.5rem;
+  order: 2;
+  background-color: #110e3c;
+  color: #fff;
+  flex-wrap: wrap;
+  padding: 1rem;
+`;
 
 class AsideView extends React.Component {
   state = {
@@ -81,7 +82,7 @@ class AsideView extends React.Component {
   render() {
     const { chartData } = this.state;
     return (
-      <div style={asideStyle}>
+      <Aside>
         <CentralView
           main={this.state.main}
           desc={this.state.desc}
@@ -97,7 +98,7 @@ class AsideView extends React.Component {
         />
         <br />
         <Chart chartData={chartData} />
-      </div>
+      </Aside>
     );
   }
 }

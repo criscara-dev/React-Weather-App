@@ -11,7 +11,8 @@ export default class Chart extends Component {
         return time;
       });
     const temperatures = this.props.chartData.map(el => {
-      return el.main.temp - 273.15;
+      const temp = (el.main.temp - 273.15).toFixed(1);
+      return temp;
     });
     const humidity = this.props.chartData.map(el => {
       return el.main.humidity;

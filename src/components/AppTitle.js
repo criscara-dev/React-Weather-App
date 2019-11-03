@@ -10,10 +10,14 @@ const AppTitle = () => {
     color: "#110E3C";
   `;
 
+  const Span = styled.span`
+    font-weight: 700;
+  `;
+
   return (
     <Title>
       <div>
-        Weather <span style={{ fontWeight: "700" }}>Forecast</span>
+        Weather <Span>Forecast</Span>
       </div>
     </Title>
   );

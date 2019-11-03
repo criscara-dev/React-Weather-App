@@ -1,5 +1,6 @@
 import React from "react";
 import Select from "react-select";
+import styled from "styled-components";
 
 import AppTitle from "../components/AppTitle";
 import CityChart from "../components/CityChart";
@@ -7,21 +8,25 @@ import SearchBar from "../components/SearchBar";
 
 import openweathermap from "../api/openWeatherMap";
 
+const SelectContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const SelectForm = styled.div`
+  width: 17rem;
+  padding-bottom: 1rem;
+`;
+
 const options = [
   { value: "weather", label: "Current Weather" },
   { value: "forecast", label: "Week Forecast" }
 ];
 
-const mainStyle = {
-  margin: 0,
-  marginRight: "1rem",
-  marginLeft: "1rem",
-  backgroundColor: "#F3FBFF",
-  flex: 2,
-  flexWrap: "wrap",
-  flexDirection: "column",
-  alignItems: "center"
-};
+const Main = styled.div`
+  flex: 2;
+  background-color: #f3fbff;
+`;
 
 class MainView extends React.Component {
   state = {
@@ -56,25 +61,19 @@ class MainView extends React.Component {
   render() {
     const { forecastData, forecastCity, forecastCityName } = this.state;
     return (
-      <div style={mainStyle}>
+      <Main>
         <AppTitle />
-        <div
-          style={{
-            flex: "0 1 320px",
-            display: "flex",
-            textAlign: "center",
-            justifyContent: "center",
-            margin: "1rem 0"
-          }}
-        >
-          <div style={{ width: 270 }}>
+
+        <SelectContainer>
+          <SelectForm>
             <Select
               options={options}
               onChange={this.onHandleSelect}
               defaultValue={{ label: "Current Weather", value: "weather" }}
             />
-          </div>
-        </div>
+          </SelectForm>
+        </SelectContainer>
+
         <SearchBar
           onFormSubmit={this.onTermSubmit}
           handleInput={this.handleInput}
@@ -86,7 +85,7 @@ class MainView extends React.Component {
           forecastCity={forecastCity}
           forecastCityName={forecastCityName}
         />
-      </div>
+      </Main>
     );
   }
 }

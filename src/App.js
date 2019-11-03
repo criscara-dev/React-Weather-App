@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   display: flex;
-  font-family: Montserrat;
+  font-family: "Montserrat", sans-serif;
   margin: 0;
   padding: 0;
   font-size: 100%;
